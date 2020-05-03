@@ -1,0 +1,197 @@
+<ion-content>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div style="height: 40%;" *ngIf="logo">
+    <img class="graphic" src="../../assets/icon/4ir (1).png" alt="" srcset="">
+    <img style="width: 80%; margin: 10% auto; display: flex;" src="../../assets/imgs/gauteng-health_27_orig.jpg">
+  </div>
+
+
+  <div padding style="position: relative; top: 0%;">
+    <h1>Sign-up</h1>
+    <form [formGroup]="userForm" (ngSubmit)="formSubmit()">
+      <ion-slides pager="true" class="slide">
+        <ion-slide>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-user icon"></i>
+            </ion-label>
+            <ion-input type="text" placeholder="Firstname" formControlName="firstname"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)' ></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('firstname')">
+            <p>Please provide a valid firstname</p>
+          </div>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-user icon"></i>
+            </ion-label>
+            <ion-input type="text" placeholder="Surname" formControlName="surname"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('surname')">
+            <p>Please provide a valid surname</p>
+          </div>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-id-badge icon"></i>
+            </ion-label>
+            <ion-input type="number" placeholder="Persal Number" formControlName="persal_number"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('persal_number')">
+            <p>Please provide a valid Persal number</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <ion-item class="item">
+            <ion-label>Are you SA citizen?
+            </ion-label>
+            <ion-select formControlName="choose" multiple="true" cancelText="Cancel" okText="Select"
+              (ionChange)="Assessment()">
+              <ion-option value="1">Yes</ion-option>
+              <ion-option value="2">No</ion-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="showQuestions2">
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-id-badge icon"></i>
+              </ion-label>
+              <ion-input type="number" placeholder="Id Number" formControlName="id_number"  (ionFocus)='onInput($event)'
+              (ionBlur)='noInput($event)'></ion-input>
+            </ion-item>
+            <div class="field-error" *ngIf="_isInvalidControl('id_number')">
+              <p>Please provide a valid Id number</p>
+            </div>
+          </div>
+
+          <div *ngIf="showQuestionsPassword">
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-id-badge icon"></i>
+              </ion-label>
+              <ion-input type="number" placeholder="Passport Number" formControlName="passport_number"  (ionFocus)='onInput($event)'
+              (ionBlur)='noInput($event)'></ion-input>
+            </ion-item>
+            <div class="field-error" *ngIf="_isInvalidControl('passport_number')">
+              <p>Please provide a enter your passport number</p>
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-phone icon"></i>
+            </ion-label>
+            <ion-input type="number" placeholder="Tel Number" formControlName="tel_number"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('tel_number')">
+            <p>Please provide a valid tell number</p>
+          </div>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-phone icon"></i>
+            </ion-label>
+            <ion-input type="number" placeholder="Cell Number" formControlName="cell_number"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('cell_number')">
+            <p>Please provide a valid cell number</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+
+          <ion-item>
+            <ion-label>Select Department</ion-label>
+            <ion-select formControlName="department_id">
+              <ion-option *ngFor="let district of listFilteredLookupDistrict" [value]="district.id">
+                {{district.description}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('department_id')">
+            <p>Please select department</p>
+          </div>
+          <ion-item>
+            <ion-label>Select Branch</ion-label>
+            <ion-select formControlName="branch_id">
+              <ion-option *ngFor="let district of listFilteredLookupMunicipality" [value]="district.department_id">
+                {{district.description}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('branch_id')">
+            <p>Please slect branchr</p>
+          </div>
+          <ion-item>
+
+            <ion-label>Select Job</ion-label>
+            <ion-select formControlName="job_title_id">
+              <ion-option *ngFor="let district of listFilteredLookupJob" [value]="district.id">{{district.description}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('job_title_id')">
+            <p>Please select job title</p>
+          </div>
+          <ion-item>
+            <ion-label>Select Unit</ion-label>
+            <ion-select formControlName="unit_id">
+              <ion-option *ngFor="let district of listFilteredLookupUnit" [value]="district.id">{{district.description}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('unit_id')">
+            <p>Please select unit</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <ion-item class="item">
+            <ion-label>Your supervisor name
+            </ion-label>
+            <ion-select formControlName="supervisor_id">
+              <ion-option [value]="superviorid">{{superviorname}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-envelope icon"></i>
+            </ion-label>
+            <ion-input type="email" placeholder="Email" formControlName="email"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('email')">
+            <p>Please provide a valid Email Address</p>
+          </div>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-lock icon"></i>
+            </ion-label>
+            <ion-input type="password" placeholder="Password" formControlName="password_hash"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('password_hash')">
+            <p>Please provide a valid Password hash</p>
+          </div>
+          <ion-item>
+            <ion-label>
+              <i class="fa fa-lock icon"></i>
+            </ion-label>
+            <ion-input type="password" placeholder="Confirm Password" formControlName="confirmPassword"  (ionFocus)='onInput($event)'
+            (ionBlur)='noInput($event)'></ion-input>
+          </ion-item>
+          <div class="field-error" *ngIf="_isInvalidControl('confirmPassword')">
+            <p>Please re-enter your password it does not match</p>
+          </div>
+          <br>
+          <button ion-button block type="submit" color="btn" >Sign Up</button>
+          <!-- <br> -->
+          <button ion-button clear block (click)="signIn()">Go Back To &nbsp; <b>Sign In</b> </button>        
+        </ion-slide>
+      </ion-slides>
+    
+    </form>
+  </div>
+  <div>
+    <img class="bottomimg" *ngIf="lowdesign" src="../../assets/icon/New Project.svg" alt="" srcset="">
+  </div>
+</ion-content>

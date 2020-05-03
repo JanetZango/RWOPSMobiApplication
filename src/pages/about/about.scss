@@ -1,0 +1,90 @@
+page-about {
+.content{
+    border:1.5px solid #a88d30;
+//     background-size:cover;
+//     background-image:
+// linear-gradient(to bottom, rgba(245, 246, 252, 0.891), rgba(250, 243, 243, 0.952)),
+// url('../../assets/icon/pngguru 1.png');
+}
+.logo{
+    text-align: center;
+    padding:10px;
+    img{
+        height:100px;
+    }
+}
+.title{
+    font-size: 0.5em;
+    text-align: center;
+    color:#0258A5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.title2{
+    text-align: center; 
+    font-size: 0.8em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.title3{
+    text-align: center; 
+    font-size: 0.5em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.name{
+    color:#a88d30;
+    text-align: center; 
+    font-size: 2em;
+    font-family: 'Berkshire Swash', cursive;
+    margin-top:-1px;
+}
+.id{
+    text-align: center;  
+    font-size: 0.6em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.empTitle{
+    text-align: center;  
+    font-size: 0.4em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top:-25px;
+}
+.empTitle2{
+    text-align: center;  
+    font-size: 0.4em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    // margin-top:-25px;
+}
+.normalPara{
+    text-align: center;
+    font-size: 0.7em;
+    // text-align: justify;
+    text-justify: inter-word;
+    padding:5px;
+}
+.container{
+    margin-top:-20px;
+}
+.sign{
+    text-align: center; 
+    font-size: 0.5em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top:-20px;
+}
+.datePara{
+    text-align: right;
+    font-size: 0.6em;
+    padding-right:5px;
+}
+.mpveDate{
+    text-align: right;
+    font-size: 0.4em;
+    padding-right:5px;
+}
+.errorTitle{
+    text-align: center;
+    text-justify: inter-word;
+    margin-top:300px
+    ;padding:20px;
+
+}
+}

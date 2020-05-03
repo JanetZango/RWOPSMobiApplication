@@ -1,0 +1,50 @@
+page-login {
+    .image{
+        //height: 20vh;
+        width: 60%;
+        object-fit: cover;
+    }
+    img {
+        max-width: 230%;
+        border: 0;
+    }
+.graphic{
+    z-index: -111;
+    width: 150vh;
+    position: absolute;
+    left: -34%;
+    top: -50%;
+}
+.bottomimg{
+    position: absolute;
+    left: -57%;
+    bottom: -23.5vh;
+    z-index: -1;
+}
+.scroll-content {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+    contain: size style layout;
+}
+.field-error{
+    color:red;
+    font-size:0.8em;
+    text-align: center;
+}
+b{
+  color:#a88d30;  
+}
+i{
+    // color:#a88d30;
+}
+
+}

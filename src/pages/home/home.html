@@ -1,0 +1,528 @@
+<ion-content class="content">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <form [formGroup]="userForm" class="mainContainerForm" (ngSubmit)="formSubmit()">
+    <div>
+      <div class="slideShow">
+        <img src="../../assets/imgs/logo2.jpg">
+        <!-- <p class="titleP">GAUTENG PROVINCE</p> -->
+        <p class="HealthTitle">HEALTH</p>
+        <p class="titleP">REPUBLIC OF SOUTH AFRICA</p>
+        <p class="titleT">APPLICATION TO PERFORM OTHER REMUNERATIVE WORK
+          IN TERMS OF SECTION 30 OF THE PUBLIC SERVICE ACT</p>
+        <p class="titlepara">In accordance with the provisions of section 30 of the Public Service Act, 1994
+          (Proclamation No. 103 of 1994)
+          [“the Act”] as amended, this form must be completed by any permanent or temporary employee of any Provincial
+          Department, National Department or Government Component as contemplated in section 8 of the Act, who wishes
+          to
+          perform other remunerative work.</p>
+        <button class="btn" ion-button id="movetopage2" (click)="moveToPage2()">Apply for RWOPS</button>
+      </div>
+      <div class="slideShow2">
+        <h3>Section A: Personal Details of Applicant</h3>
+        <p>Persal Number</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-id-badge icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="persal_number" formControlName="persal_number"
+            placeholder="Persal number"></ion-input>
+        </ion-item>
+        <p>First Names</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-user icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="firstname" formControlName="firstname" placeholder="First names">
+          </ion-input>
+        </ion-item>
+        <p>Surname</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-user icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="surname" formControlName="surname" placeholder="Surname">
+          </ion-input>
+        </ion-item>
+        <p>ID Number</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-id-badge icon"></i>
+          </ion-label>
+          <ion-input type="number" disabled [value]="id_number" formControlName="id_number" placeholder="Id number">
+          </ion-input>
+        </ion-item>
+        <p>OfficePhone Number</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-phone icon"></i>
+          </ion-label>
+          <ion-input type="number" disabled [value]="tel_number" formControlName="tel_number"
+            placeholder="Office phone number"></ion-input>
+        </ion-item>
+        <div class="movetopage2">
+          <button ion-button (click)="moveToPage3()">Next</button>
+        </div>
+
+      </div>
+      <div class="slideShow3">
+        <h3>Section A: Personal Details of Applicant</h3>
+        <p>CellPhone Number</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-phone icon"></i>
+          </ion-label>
+          <ion-input type="number" disabled [value]="cell_number" formControlName="cell_number"
+            placeholder="Cell phone number"></ion-input>
+        </ion-item>
+        <p>Email Address</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-envelope icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="email" formControlName="email" placeholder="Email address">
+          </ion-input>
+        </ion-item>
+        <p>Postal Address</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-address-book icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="postal_address" formControlName="postal_address"
+            placeholder="Postal Address"></ion-input>
+        </ion-item>
+        <p>Postal Code</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-address-book icon"></i>
+          </ion-label>
+          <ion-input type="number" disabled [value]="postal_code" formControlName="postal_code"
+            placeholder="Postal Code"></ion-input>
+        </ion-item>
+        <p>Department Name</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-institution icon"></i>
+          </ion-label>
+          <ion-input type="text" disabled [value]="departmentDescription" formControlName="department_id"
+            placeholder="Department name"></ion-input>
+        </ion-item>
+        <div class="movetopage2">
+          <button ion-button id="movetopage2" (click)="moveToPage4()">Next</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="slideShow4">
+      <h3>Section A: Personal Details of Applicant</h3>
+      <p>Branch/Cluster</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-group icon"></i>
+        </ion-label>
+        <ion-input type="text" disabled [value]="branchDescription" formControlName="branch_id"
+          placeholder="Branch/cluster"></ion-input>
+      </ion-item>
+      <p>Directorate/Unit</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-institution icon"></i>
+        </ion-label>
+        <ion-input type="text" disabled [value]="unitDscritpion" placeholder="Directorate/Unit"></ion-input>
+      </ion-item>
+      <p>Job Title</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-institution icon"></i>
+        </ion-label>
+        <ion-input type="text" disabled [value]="jobDescription" placeholder="Directorate/Unit"></ion-input>
+      </ion-item>
+      <p>Status</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-institution icon"></i>
+        </ion-label>
+        <ion-input type="text" disabled [value]="status_id" placeholder="Draft"></ion-input>
+      </ion-item>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage5()">Next</button>
+      </div>
+
+    </div>
+    <div class="slideShow5">
+      <h3>Section B: Working Hours</h3>
+      <br>
+      <br>
+      <p>Current working hours of the applicant (per week)</p>
+      <ion-item class="item2">
+        <ion-label>
+          <i class="fa fa-hourglass-3 icon"></i>
+        </ion-label>
+        <ion-input type="number" [value]="current_working_hours" formControlName="current_working_hours"
+          placeholder="Current working hours"></ion-input>
+      </ion-item>
+      <div class="field-error" *ngIf="_isInvalidControl('current_working_hours')">
+        <p>Please provide a current working hours</p>
+      </div>
+      <p>Call/standby duties hours (per week)</p>
+      <ion-item class="item2">
+        <ion-label>
+          <i class="fa fa-hourglass-3 icon"></i>
+        </ion-label>
+        <ion-input type="number" [value]="standby_duties_hours" formControlName="standby_duties_hours"
+          placeholder="Call/standby duties hours"></ion-input>
+      </ion-item>
+      <div class="field-error" *ngIf="_isInvalidControl('standby_duties_hours')">
+        <p>Please provide a standby duties hours</p>
+      </div>
+      <p>Current overtime hours worked (per month)</p>
+      <ion-item class="item2">
+        <ion-label>
+          <i class="fa fa-hourglass-end icon"></i>
+        </ion-label>
+        <ion-input type="number" [value]="current_overtime_hours_worked" formControlName="current_overtime_hours_worked"
+          placeholder="Current overtime hours worked">
+        </ion-input>
+      </ion-item>
+      <div class="field-error" *ngIf="_isInvalidControl('current_overtime_hours_worked')">
+        <p>Please provide a current overtime hour</p>
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage6()">Next</button>
+      </div>
+    </div>
+
+    <div class="slideShow6">
+      <h3>Section C: Application for Other Remunerative Work</h3>
+      <ion-item class="item">
+        <ion-label>Category of Work
+        </ion-label>
+        <ion-select formControlName="work_category_id" multiple="true" cancelText="Cancel" okText="Select"
+          (ionChange)="AssessmentQuestions()">
+          <ion-option value="1">Architecture Planning and Surveying</ion-option>
+          <ion-option value="2">Building Construction</ion-option>
+          <ion-option value="2">Consultancy Work</ion-option>
+          <ion-option value="3">Design(Textiles,Graphics</ion-option>
+          <ion-option value="4">Framing and Breeding</ion-option>
+          <ion-option value="5">Fashion Design/Sewing</ion-option>
+          <ion-option value="6">Financial Markets</ion-option>
+          <ion-option value="7">Fitness Industry</ion-option>
+          <ion-option value="7">Sausage</ion-option>
+          <ion-option value="8" disabled>Sub Categories of Health Professionals</ion-option>
+          <ion-option value="9">Medical Doctors</ion-option>
+          <ion-option value="9">Nursing and MidWifery Professionals</ion-option>
+          <ion-option value="10">Traditional and Complementary Professionals</ion-option>
+          <ion-option value="11">Sport Scientists</ion-option>
+          <ion-option value="12">Paramedical Practitioners</ion-option>
+          <ion-option value="13">Veterinarians</ion-option>
+          <ion-option value="15">Hospitality Industry</ion-option>
+          <ion-option value="16">Import and Export Business</ion-option>
+          <ion-option value="17">Information and Communication </ion-option>
+          <ion-option value="18">Logistics and Transport </ion-option>
+          <ion-option value="19">Manufacturing Mining Construction</ion-option>
+          <ion-option value="20">Retail and Wholesale Trade</ion-option>
+          <ion-option value="21">Sales and Markerting </ion-option>
+          <ion-option value="22">Security Industry</ion-option>
+          <ion-option value="23">Sports Recreation and Cultural</ion-option>
+          <ion-option value="24">Training Research and Development </ion-option>
+          <ion-option value="25">Tavern Owner ad Restaurants </ion-option>
+          <ion-option value="26">Pastoral Services</ion-option>
+          <ion-option value="27">Funeral Parlor</ion-option>
+          <ion-option value="28">Other</ion-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="showQuestions">
+        <p>Describe in detail the nature of the work that will be performed, i.e. company activities and your role
+        </p>
+        <textarea type="text" id="desc" formControlName="nature_of_work" placeholder="Describe Nature of Work">
+          </textarea>
+        <div class="field-error" *ngIf="_isInvalidControl('nature_of_work')">
+          <p>Please provide nature of work</p>
+        </div>
+      </div>
+      <p>Planned start date of other remunerative work</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-calendar-o icon"></i>
+        </ion-label>
+        <ion-input type="date" formControlName="start_date" placeholder="Start date">
+        </ion-input>
+      </ion-item>
+      <div class="field-error" *ngIf="_isInvalidControl('start_date')">
+        <p>Please provide a start date</p>
+      </div>
+      <p>Planned end date of other remunerative work</p>
+      <ion-item class="item">
+        <ion-label>
+          <i class="fa fa-calendar-o icon"></i>
+        </ion-label>
+        <ion-input type="date" formControlName="end_date" placeholder="End date">
+        </ion-input>
+      </ion-item>
+      <div class="field-error" *ngIf="_isInvalidControl('end_date')">
+        <p>Please provide end date</p>
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage7()">Next</button>
+      </div>
+    </div>
+    <div class="slideShow7">
+      <h3>Section C: Application for Other Remunerative Work</h3>
+      <p class="title_name">Specify the days of the week and specific hours that work will be performed</p>
+      <div class="your-class">
+        <p>Monday</p>
+        <input formControlName="mon_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
+          type="time" /> to
+        <input formControlName="mon_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
+      </div>
+    
+    <div class="field-error" *ngIf="_isInvalidControl('mon_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('mon_end_hours')">
+      <p>Please provide hours </p>
+    </div>
+    <div class="your-class">
+      <p>Tuesday</p>
+      <input formControlName="tue_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
+        type="time" /> to
+      <input formControlName="tue_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('tue_start_hours')">
+      <p>Please provide tuesday hours</p>
+    </div>
+    <div class="your-class">
+      <p>Wednesday</p>
+      <input formControlName="wed_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="wed_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('wed_end_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('wed_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="your-class">
+      <p>Thursday</p>
+      <input formControlName="thu_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="thu_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('thu_end_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('thu_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="your-class">
+      <p>Friday</p>
+      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="your-class">
+      <p>Saturday</p>
+      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="your-class">
+      <p>Sunday</p>
+      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
+      <p>Please provide hours</p>
+    </div>
+    <div class="movetopage2">
+      <button ion-button id="movetopage2" (click)="moveToPage8()">Next</button>
+    </div>
+    </div>
+    <div class="slideShow8">
+      <h3>Section C: Application for Other Remunerative Work</h3>
+      <p class="title_name">If the remunerative work will be undertaken with/in an established business or organisation
+        ,please provide
+        details</p>
+      <ion-item class="item">
+        <ion-label>Do you have remunerative work will be undertaken with/in an established business or organisation
+        </ion-label>
+        <ion-select formControlName="choose" multiple="true" cancelText="Cancel" okText="Select"
+          (ionChange)="Assessment()">
+          <ion-option value="1">Yes</ion-option>
+          <ion-option value="2">No</ion-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="showQuestions2">
+        <p>Total number of hours planned for performing the remunerative work (per month)</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-hourglass-3 icon"></i>
+          </ion-label>
+          <ion-input type="number" formControlName="total_working_hours" placeholder="Total number of hours planned">
+          </ion-input>
+        </ion-item>
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('total_working_hours')">
+          <p>Please provide total_working_hours</p>
+        </div> -->
+        <p>Specify where the remunerative work will be performed (e.g. Home, Office, School,
+          Door-to-door, etc.)</p>
+        <textarea type="text" id="desc" formControlName="remunerative_work_performed"
+          placeholder="Remunerative_work_performed">
+                      </textarea>
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('Remunerative_work_performed')">
+          <p>Please provide work performed</p>
+        </div> -->
+        <p class="title_name">If the remunerative work will be undertaken with/in an established business
+          ororganisation, please provide details</p>
+
+        <p>Name of business/organisation</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-institution icon"></i>
+          </ion-label>
+          <ion-input type="text" formControlName="business_name" placeholder="Name of Business/Organization">
+          </ion-input>
+        </ion-item>
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('business')">
+          <p>Please provide business</p>
+        </div> -->
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage9()">Next</button>
+      </div>
+    </div>
+    <div class="slideShow9">
+      <div *ngIf="showQuestions2">
+
+        <h3>Section C: Application for Other Remunerative Work</h3>
+        <p class="title_name">Details of person you will be reporting to</p>
+        <p>Surname</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-user icon"></i>
+          </ion-label>
+          <ion-input type="text" formControlName="reporting_person_surname" placeholder="Reporting_person_surname">
+          </ion-input>
+        </ion-item>
+        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_surname')">
+          <p>Please provide reporting_person_surname</p>
+        </div>
+        <p>Initials</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-user icon"></i>
+          </ion-label>
+          <ion-input type="text" formControlName="reporting_person_initials" placeholder="Initials">
+          </ion-input>
+        </ion-item>
+        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_initials')">
+          <p>Please provide initials</p>
+        </div>
+        <p>Contact number of business/organisation</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-phone icon"></i>
+          </ion-label>
+          <ion-input type="number" formControlName="contact_number"
+            placeholder="Contact number of business/organisation">
+          </ion-input>
+        </ion-item>
+        <div class="field-error" *ngIf="_isInvalidControl('contact_number')">
+          <p>Please provide contact number</p>
+        </div>
+        <p>Contact number of person you will be reporting to</p>
+        <ion-item class="item">
+          <ion-label>
+            <i class="fa fa-phone icon"></i>
+          </ion-label>
+          <ion-input type="number" formControlName="reporting_person_contact_number"
+            placeholder="Contact number of person you will be reporting to">
+          </ion-input>
+        </ion-item>
+        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_contact_number')">
+          <p>Please provide reporting person</p>
+        </div>
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage10()">Next</button>
+      </div>
+    </div>
+    <div class="slideShow10">
+      <h3>Please upload a document</h3>
+      <div>
+        <label for="file" id="cam">
+          <ion-icon class="Add" md="md-create-circle"></ion-icon>
+        </label>
+        <div class="img">
+          <img src="../../assets/imgs/default.png">
+        </div>    
+        <ion-input type="file" accept="image/*" (change)="insertpic($event)"></ion-input>
+        <h1>{{name}}</h1>
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage11()">Next</button>
+      </div>
+    </div>
+    <div class="slideShow11" id="page2">
+      <h3>Section D: Declaration</h3>
+      <p class="declarationParagraph">I <b>{{firstname}} {{surname}}</b> hereby confirm that the information
+        supplied in this
+        application
+        form is correct and undertake to assist my
+        department in meeting its service delivery demands, including overtime commitments (if applicable), which
+        includes being on call/standby (when applicable) as scheduled. I acknowledge that my first commitment is to
+        meet the operational objectives of my department.
+        I confirm that my performance of other remunerative work will in no way interfere with my commitments to my
+        department.
+        I confirm that my performance of other remunerative work will not take place during the hours I am required
+        for duties as agreed in my employment contract.
+        I confirm that I will not use any state resources for the purpose of performing other remunerative work.
+        I accept that I shall not conduct business with any organ of the state, either in person or as part of an
+        entity (including non-profit organisations).
+        I accept that permission to perform other remunerative work is only granted for the time agreed upon (and
+        reflected on the certificate of approval), and that it only applies to the services/types of remunerative
+        work
+        as indicated in this application form.
+        I accept that, should I wish to continue with such remunerative work, I must submit a new application at
+        least
+        30 days before expiry.
+        I accept that non-compliance with any of the conditions, monitoring or control measures pertaining to other
+        remunerative work may lead to disciplinary action and that the sanction imposed includes forfeiture of
+        remuneration and/or benefits gained.
+        I accept that the normal policies and measures governing discipline also apply in terms of non-compliance
+        with
+        the other remunerative work policy and measures.
+        I agree to abide by any control measures applicable to the other remunerative work system, including that it
+        may be required of me to sign in and out each time I enter or exit the institution where I perform my basic
+        or
+        overtime duties.
+        I agree to attach the certificate of approval when disclosing my financial interests, if applicable.
+        I acknowledge that the Executive Authority or delegated authority can, at any time, terminate my
+        authorisation
+        to perform other remunerative work, based on a change in operational requirements and/or poor performance on
+        my part.</p>
+      <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png">
+      <p class="sign">Signature of Applicant</p>
+      <p class="datePara">10/20/2020</p>
+      <p class="mpveDate">(date)</p>
+      <p class="degnPara">{{designated}}</p>
+      <p class="mpvename">(Designated)</p>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="moveToPage11()">Apply</button>
+      </div>
+    </div>
+    <!-- </div>  -->
+
+  </form>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-content class="content">
+  <div *ngIf="this.displayStatus == 2 || this.displayStatus == 3  || this.displayStatus ==4 || this.displayStatus == undefined" >
+    <p class="errorTitle">The certificate is only generated after the application has been approved</p>
+  </div>
+  <!-- <div *ngIf="this.displayStatus == 5"> -->
+    <div class="logo">
+      <img src="../../assets/imgs/logo2.jpg">
+    </div>
+  
+    <p class="title">REPUBLIC OF SOUTH AFRICA</p>
+    <p class="title2">CERTIFICATE: APPROVAL OF OTHER REMUNERATIVE WORK</p>
+    <p class="title3">Permission is hereby granted to</p>
+    <p class="name">{{firstname}}&nbsp;{{surname}}</p>
+    <p class="empTitle">(employee)</p>
+    <p class="id">{{persal_number}}</p>
+    <p class="empTitle2">(persal no)</p>
+    <p class="empTitle2">to perform other remunerative work outside</p>
+    <p class="name">{{departmentDescription}}</p>
+    <div class="container">
+      <p class="normalPara">The following will be conducted:</p>
+      <p class="normalPara">{{job_functions}}</p>
+      <p class="normalPara">Period 10/03/2020 to 31/10/2020</p>
+      <p class="normalPara">Please note:</p>
+      <p class="normalPara">Permission is only granted for the work indicated above.</p>
+      <p class="normalPara">If it is to be discovered that you are not adhering to Government prescripts regulating other
+        remunerative work, including not conducting business with an organ of state, your permission will be withdrawn and
+        disciplinary steps will be instituted.</p>
+      <p class="normalPara">If you wish to continue with other remunerative work after the expiry of the approved date, a
+        further application must be submitted.</p>
+      <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png">
+      <p class="sign">Executive Authority/Delegated Authority</p>
+      <p class="datePara">10/20/2020</p>
+      <p class="mpveDate">(date)</p>
+  
+    </div>
+  <!-- </div> -->
+</ion-content>

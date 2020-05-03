@@ -1,0 +1,32 @@
+page-contact {
+    .content{
+        background-size: cover;
+        background-image:
+    linear-gradient(to bottom, rgba(245, 246, 252, 0.891), rgba(250, 243, 243, 0.952)),
+    url('../../assets/imgs/logo2.jpg');
+    }
+    .box{
+        // height:100px;
+        // width:300px;
+        // // background-color: white;
+        // margin:10px auto;
+        margin-top:200px;
+        // box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.143);
+        // padding:50px;
+    }
+    h2{
+        text-align: center;
+        padding:30px;
+        font-family: 'Berkshire Swash', cursive;
+        color:#0258A5;
+    }
+    .body{
+        text-align: center
+    }
+    .body2{
+        text-align: center;
+        color:#0258A5;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+  
+}
