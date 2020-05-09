@@ -5,7 +5,7 @@ import { ServiceProvider } from '../../providers/service/service';
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-export class ContactPage {
+export class ContactPage{
   currentLoggedIn = new Array();
   firstname;
   surname;
@@ -18,28 +18,14 @@ export class ContactPage {
   create_user_id;
   getStatus= new Array();
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,  public service: ServiceProvider,) {
-
+    public navParams: NavParams,  public service: ServiceProvider) {
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
-   
-    
-    // console.log(this.currentLoggedIn[0][0].username)
     this.id = this.currentLoggedIn[0][0].id
-    // this.username = this.currentLoggedIn[0][0].username
-    // this.surname = this.currentLoggedIn[0][0].surname
     this.id_number = this.currentLoggedIn[0][0].id_number
-    this.email = this.currentLoggedIn[0][0].email
-    console.log(this.id)
-   
-  
-  }
-
-  ionViewDidLoad() {
-    
+    this.email = this.currentLoggedIn[0][0].email 
     this.getApplication();
     this.getUserProfile()
   }
-
   getUserProfile() {
     this.service.getUserProfile(this.id).subscribe((_responseData) => {
       this.firstname = _responseData.firstname
@@ -48,25 +34,23 @@ export class ContactPage {
   }
   getApplication(){
     this.service.getApplication().subscribe(_response => {
-      console.log(_response)
-      this.firstname =_response.first_name
-      this.surname =_response.surname
-      this.status=_response.status_id
-      this.create_user_id=_response.create_user_id
-      console.log(this.create_user_id)
-
-      this.getStatus = _response.status_id
-      console.log(this.getStatus)
+      for(var x =0; x < _response.length ;x++){
+        if(this.id == _response[x].create_user_id){
+         let obj = {
+          create_user_id: _response[x].create_user_id,
+          firstname: _response[x].first_name,
+          surname : _response[x].surname,
+          status: _response[x].status_id
+          }        
+        }
+      }
+      this.getStatus = obj.status
       this.getApplicationStatusMethod()
     })
-  
   }
-
   getApplicationStatusMethod() {
-    console.log(this.getStatus)
-    this.service.getApplicationStatus(this.status).subscribe(_responseDataStatus => {
+    this.service.getApplicationStatus(this.getStatus).subscribe(_responseDataStatus => {
     this.description =_responseDataStatus.description
-    console.log(this.description)
     })
   }
 

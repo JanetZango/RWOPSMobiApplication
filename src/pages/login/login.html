@@ -9,7 +9,7 @@
     <form [formGroup]="userForm" (ngSubmit)="getEmail()">
       <ion-item>
         <ion-label>
-          <i class="fa fa-envelope icon"></i>
+          <i class="fa fa-envelope"></i>
         </ion-label>
         <ion-input type="email" placeholder="Email" formControlName="email" (ionFocus)='onInput($event)'
           (ionBlur)='noInput($event)'></ion-input>
@@ -19,7 +19,7 @@
       </div>
       <ion-item>
         <ion-label>
-          <i class="fa fa-lock icon"></i>
+          <i class="fa fa-lock"></i>
         </ion-label>
         <ion-input type="password" placeholder="Password" formControlName="password"
           (ionFocus)='onInput($event)' (ionBlur)='noInput($event)'></ion-input>

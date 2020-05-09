@@ -78,7 +78,7 @@ export class ServiceProvider {
   }
 
   getApplication() {
-    const url = `${this.baseUrl}/api/application/get/1`;
+    const url = `${this.baseUrl}/api/application/get`;
     console.log(url)
     var data = this.http.get(url,httpOptions)
     // console.log(data)

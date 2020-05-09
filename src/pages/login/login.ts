@@ -83,8 +83,8 @@ export class LoginPage {
   }
 
   getEmail() {
-    console.log(this.userForm.value.email)
-    console.log(this.userForm.value.password)
+    // console.log(this.userForm.value.email)
+    // console.log(this.userForm.value.password)
     this.verifyLogin.getUser().subscribe(_responseData => {
       for (var x = 0; x < _responseData.length; x++) {
         let obj = {
@@ -93,7 +93,7 @@ export class LoginPage {
           username: _responseData[x].username,
           id: _responseData[x].id
         }
-        console.log(obj)
+        // console.log(obj)
         if (obj.email === this.userForm.value.email && obj.password_hash === this.userForm.value.password) {
           let obj = {
             id: _responseData[x].id,
@@ -102,11 +102,11 @@ export class LoginPage {
             password_hash: _responseData[x].password_hash
           }
           this.displayUser.push(obj)
-          console.log(this.displayUser)
+          // console.log(this.displayUser)
           this.navCtrl.setRoot(TabsPage, { orgObject: this.displayUser });
         }
         else {
-          console.log('error')
+          // console.log('error')
         }
       }
     }, _error => {

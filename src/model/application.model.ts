@@ -11,7 +11,6 @@ export class Application {
     public department_id: number;
     public branch_id: number;
     public unit_id: number;
-    // public professional_body: number;
     public job_functions: string;
     public id: number;
     public create_user_id:number;

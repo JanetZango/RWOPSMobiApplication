@@ -1,6 +1,6 @@
 <ion-content class="content">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <form [formGroup]="userForm" class="mainContainerForm" (ngSubmit)="formSubmit()">
+ <form [formGroup]="userForm" class="mainContainerForm" (ngSubmit)="formSubmit()"> 
     <div>
       <div class="slideShow">
         <img src="../../assets/imgs/logo2.jpg">
@@ -372,18 +372,18 @@
           <ion-input type="number" formControlName="total_working_hours" placeholder="Total number of hours planned">
           </ion-input>
         </ion-item>
-        <!-- <div class="field-error" *ngIf="_isInvalidControl('total_working_hours')">
+       <div class="field-error" *ngIf="_isInvalidControl('total_working_hours')">
           <p>Please provide total_working_hours</p>
-        </div> -->
-        <p>Specify where the remunerative work will be performed (e.g. Home, Office, School,
+        </div>
+       <p>Specify where the remunerative work will be performed (e.g. Home, Office, School,
           Door-to-door, etc.)</p>
         <textarea type="text" id="desc" formControlName="remunerative_work_performed"
           placeholder="Remunerative_work_performed">
-                      </textarea>
-        <!-- <div class="field-error" *ngIf="_isInvalidControl('Remunerative_work_performed')">
+                      </textarea> 
+         <div class="field-error" *ngIf="_isInvalidControl('Remunerative_work_performed')">
           <p>Please provide work performed</p>
-        </div> -->
-        <p class="title_name">If the remunerative work will be undertaken with/in an established business
+        </div> 
+   <p class="title_name">If the remunerative work will be undertaken with/in an established business
           ororganisation, please provide details</p>
 
         <p>Name of business/organisation</p>
@@ -393,11 +393,11 @@
           </ion-label>
           <ion-input type="text" formControlName="business_name" placeholder="Name of Business/Organization">
           </ion-input>
-        </ion-item>
-        <!-- <div class="field-error" *ngIf="_isInvalidControl('business')">
+        </ion-item> 
+      <div class="field-error" *ngIf="_isInvalidControl('business')">
           <p>Please provide business</p>
-        </div> -->
-      </div>
+        </div> 
+   </div>
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage9()">Next</button>
       </div>
@@ -522,7 +522,7 @@
         <button ion-button id="movetopage2" (click)="moveToPage11()">Apply</button>
       </div>
     </div>
-    <!-- </div>  -->
+  <!-- </div>  -->
 
   </form>
 </ion-content>

@@ -93,6 +93,7 @@ export class HomePage {
   showQuestions: boolean = false;
   showQuestions2: boolean = false;
   date;
+  getExistingApplicationId;
   persalNumber;
   img: string = '../assets/imgs/placeholder-image.png';
   upLoadDocument: File = null;
@@ -105,8 +106,6 @@ export class HomePage {
     public toastCtrl: ToastController,
     public http: HttpClient
   ) {
-
-
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
     this.date = new Date().toISOString()
     this.id = this.currentLoggedIn[0][0].id
@@ -121,178 +120,263 @@ export class HomePage {
   }
   ionViewDidLoad() {
     this.getApplication();
-    this.getpersal()
+    this.getpersal();
+    this.getExistingApplication();
+  }
+  getExistingApplication(){
+    this.service.getApplication().subscribe(_response => {
+      for(var x =0; x < _response.length ;x++){
+        if(this.id == _response[x].create_user_id){
+         let obj = {
+          create_user_id: _response[x].create_user_id,
+          firstname: _response[x].first_name,
+          surname : _response[x].surname,
+          status: _response[x].status_id,
+          application_id: _response[x].id
+          } 
+          console.log(obj.application_id)       
+        }
+      }
+      
+      this.getStatus = obj.status
+      this.getExistingApplicationId = obj.application_id
+      this.getApplicationStatusMethod()
+    })
+    console.log(this.getExistingApplicationId) 
   }
 
-
-
-  moveToPage2(){
-  let slideShow = document.getElementsByClassName('slideShow') as HTMLCollectionOf<HTMLElement>;
-  let slideShow2 = document.getElementsByClassName('slideShow2')  as HTMLCollectionOf<HTMLElement>;
-
-  if(slideShow2[0].style.display == "none"){
-    slideShow2[0].style.display = "block"
-    slideShow[0].style.display = "none"
-    
-  } else if(slideShow2[0].style.display == "block"){
-    slideShow2[0].style.display = "none"
-    slideShow[0].style.display = "block"
-  }
-  else{
-    slideShow[0].style.display = "none"
-    slideShow2[0].style.display = "block"
-  }
-
-  }
-  moveToPage3(){
+  moveToPage2() {
+    let slideShow = document.getElementsByClassName('slideShow') as HTMLCollectionOf<HTMLElement>;
     let slideShow2 = document.getElementsByClassName('slideShow2') as HTMLCollectionOf<HTMLElement>;
-    let slideShow3 = document.getElementsByClassName('slideShow3')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow2[0].style.display == "none"){
+
+    if (slideShow2[0].style.display == "none") {
+      slideShow2[0].style.display = "block"
+      slideShow[0].style.display = "none"
+
+    } else if (slideShow2[0].style.display == "block") {
+      slideShow2[0].style.display = "none"
+      slideShow[0].style.display = "block"
+    }
+    else {
+      slideShow[0].style.display = "none"
+      slideShow2[0].style.display = "block"
+    }
+
+  }
+  moveToPage3() {
+    let slideShow2 = document.getElementsByClassName('slideShow2') as HTMLCollectionOf<HTMLElement>;
+    let slideShow3 = document.getElementsByClassName('slideShow3') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow2[0].style.display == "none") {
       slideShow2[0].style.display = "block"
       slideShow3[0].style.display = "none"
-      
-    } else if(slideShow2[0].style.display == "block"){
+
+    } else if (slideShow2[0].style.display == "block") {
       slideShow2[0].style.display = "none"
       slideShow3[0].style.display = "block"
     }
-    else{
+    else {
       slideShow3[0].style.display = "none"
       slideShow2[0].style.display = "block"
     }
   }
-  moveToPage4(){
+  moveToPage4() {
     let slideShow3 = document.getElementsByClassName('slideShow3') as HTMLCollectionOf<HTMLElement>;
-    let slideShow4 = document.getElementsByClassName('slideShow4')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow3[0].style.display == "none"){
+    let slideShow4 = document.getElementsByClassName('slideShow4') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow3[0].style.display == "none") {
       slideShow3[0].style.display = "block"
       slideShow4[0].style.display = "none"
-      
-    } else if(slideShow3[0].style.display == "block"){
+
+    } else if (slideShow3[0].style.display == "block") {
       slideShow3[0].style.display = "none"
       slideShow4[0].style.display = "block"
     }
-    else{
+    else {
       slideShow4[0].style.display = "none"
       slideShow3[0].style.display = "block"
     }
   }
-  moveToPage5(){
+  moveToPage5() {
+    // this.Application = new Application();
+    // this.Application.first_name = this.userForm.value.firstname;
+    // this.Application.surname = this.userForm.value.surname;
+    // this.Application.email = this.userForm.value.email;
+    // this.Application.department_id = this.userForm.value.department_id;
+    // this.Application.branch_id = this.userForm.value.branch_id;
+    // this.Application.office_phone_number = this.userForm.value.tel_number;
+    // this.Application.cellphone_number = this.userForm.value.cell_number;
+    // this.Application.id_number = this.userForm.value.id_number;
+    // this.Application.persal_number = this.userForm.value.persal_number;
+    // this.Application.job_functions = this.userForm.value.job_functions;
+    // this.Application.postal_address = this.userForm.value.postal_address;
+    // this.Application.postal_code = this.userForm.value.postal_code;
+    // this.Application.status_id = this.Application.status_id;
+    // console.log(this.id)
+    // this.Application.application_date = this.date
+    // this.Application.create_user_id = this.id;
+    // this.Application.id = this.id;
+    // this.service.createApplication(this.Application).subscribe((_response: any) => {
+    //   console.log(_response)
+    // })
     let slideShow4 = document.getElementsByClassName('slideShow4') as HTMLCollectionOf<HTMLElement>;
-    let slideShow5 = document.getElementsByClassName('slideShow5')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow4[0].style.display == "none"){
+    let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow4[0].style.display == "none") {
       slideShow4[0].style.display = "block"
       slideShow5[0].style.display = "none"
-      
-    } else if(slideShow4[0].style.display == "block"){
+
+    } else if (slideShow4[0].style.display == "block") {
       slideShow4[0].style.display = "none"
       slideShow5[0].style.display = "block"
     }
-    else{
+    else {
       slideShow5[0].style.display = "none"
       slideShow4[0].style.display = "block"
     }
   }
-  moveToPage6(){
-    let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
-    let slideShow6 = document.getElementsByClassName('slideShow6')  as HTMLCollectionOf<HTMLElement>;
+  moveToPage6() {
+    // console.log(this.id)
+    this.Hours = new Hours();
+    this.Hours.current_working_hours = this.userForm.value.current_working_hours;
+    this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
+    this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
+
+    this.Hours.create_user_id = this.id
+    this.service.createHours(this.Hours).subscribe((_response: any) => {
+      console.log(_response)
+    })
+    // if(this.userForm.value.current_working_hours ==null || this.userForm.value.current_working_hours == undefined,
+    //   this.Hours.standby_duties_hours ==null || this.Hours.standby_duties_hours ==undefined,
+    //   this.Hours.current_overtime_hours_worked == null || this.Hours.current_overtime_hours_worked == undefined ){
+    //     const alert = this.alertCtrl.create({
+    //       subTitle: 'Please Fill in the form to continue',
+    //       buttons: ['OK']
+    //     });
+    //     alert.present();
+    // }
+    // else if(this.userForm.value.current_working_hours ==null || this.userForm.value.current_working_hours == undefined){
+    //   const alert = this.alertCtrl.create({
+    //     subTitle: 'Please enter the current working hours',
+    //     buttons: ['OK']
+    //   });
+    //   alert.present();
+    // }
+    // else if(  this.Hours.standby_duties_hours ==null || this.Hours.standby_duties_hours ==undefined){
+    //   const alert = this.alertCtrl.create({
+    //     subTitle: 'Please enter the standby duties hours',
+    //     buttons: ['OK']
+    //   });
+    //   alert.present();
+    // }
+    // else if( this.Hours.current_overtime_hours_worked == null || this.Hours.current_overtime_hours_worked == undefined ){
+    //   const alert = this.alertCtrl.create({
+    //     subTitle: 'Please enter the current overtime hours worked',
+    //     buttons: ['OK']
+    //   });
+    //   alert.present();
+    // }
+    // else{
+      let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
+      let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
   
-    if(slideShow5[0].style.display == "none"){
-      slideShow5[0].style.display = "block"
-      slideShow6[0].style.display = "none"
-      
-    } else if(slideShow5[0].style.display == "block"){
-      slideShow5[0].style.display = "none"
-      slideShow6[0].style.display = "block"
-    }
-    else{
-      slideShow6[0].style.display = "none"
-      slideShow5[0].style.display = "block"
-    }
+      if (slideShow5[0].style.display == "none") {
+        slideShow5[0].style.display = "block"
+        slideShow6[0].style.display = "none"
+  
+      } else if (slideShow5[0].style.display == "block") {
+        slideShow5[0].style.display = "none"
+        slideShow6[0].style.display = "block"
+      }
+      else {
+        slideShow6[0].style.display = "none"
+        slideShow5[0].style.display = "block"
+      }
+    // }
+
+  
   }
-  moveToPage7(){
+  moveToPage7() {
     let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
-    let slideShow7 = document.getElementsByClassName('slideShow7')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow6[0].style.display == "none"){
+    let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow6[0].style.display == "none") {
       slideShow6[0].style.display = "block"
       slideShow7[0].style.display = "none"
-      
-    } else if(slideShow6[0].style.display == "block"){
+
+    } else if (slideShow6[0].style.display == "block") {
       slideShow6[0].style.display = "none"
       slideShow7[0].style.display = "block"
     }
-    else{
+    else {
       slideShow7[0].style.display = "none"
       slideShow6[0].style.display = "block"
     }
   }
-  moveToPage8(){
+  moveToPage8() {
     let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
-    let slideShow8 = document.getElementsByClassName('slideShow8')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow7[0].style.display == "none"){
+    let slideShow8 = document.getElementsByClassName('slideShow8') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow7[0].style.display == "none") {
       slideShow7[0].style.display = "block"
       slideShow8[0].style.display = "none"
-      
-    } else if(slideShow7[0].style.display == "block"){
+
+    } else if (slideShow7[0].style.display == "block") {
       slideShow7[0].style.display = "none"
       slideShow8[0].style.display = "block"
     }
-    else{
+    else {
       slideShow8[0].style.display = "none"
       slideShow7[0].style.display = "block"
     }
   }
-  moveToPage9(){
+  moveToPage9() {
     let slideShow8 = document.getElementsByClassName('slideShow8') as HTMLCollectionOf<HTMLElement>;
-    let slideShow9 = document.getElementsByClassName('slideShow9')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow8[0].style.display == "none"){
+    let slideShow9 = document.getElementsByClassName('slideShow9') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow8[0].style.display == "none") {
       slideShow8[0].style.display = "block"
       slideShow9[0].style.display = "none"
-      
-    } else if(slideShow8[0].style.display == "block"){
+
+    } else if (slideShow8[0].style.display == "block") {
       slideShow8[0].style.display = "none"
       slideShow9[0].style.display = "block"
     }
-    else{
+    else {
       slideShow9[0].style.display = "none"
       slideShow8[0].style.display = "block"
     }
   }
-  moveToPage10(){
+  moveToPage10() {
     let slideShow9 = document.getElementsByClassName('slideShow9') as HTMLCollectionOf<HTMLElement>;
-    let slideShow10 = document.getElementsByClassName('slideShow10')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow9[0].style.display == "none"){
+    let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow9[0].style.display == "none") {
       slideShow9[0].style.display = "block"
       slideShow10[0].style.display = "none"
-      
-    } else if(slideShow9[0].style.display == "block"){
+
+    } else if (slideShow9[0].style.display == "block") {
       slideShow9[0].style.display = "none"
       slideShow10[0].style.display = "block"
     }
-    else{
+    else {
       slideShow10[0].style.display = "none"
       slideShow9[0].style.display = "block"
     }
   }
-  moveToPage11(){
+  moveToPage11() {
     let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
-    let slideShow11 = document.getElementsByClassName('slideShow11')  as HTMLCollectionOf<HTMLElement>;
-  
-    if(slideShow10[0].style.display == "none"){
+    let slideShow11 = document.getElementsByClassName('slideShow11') as HTMLCollectionOf<HTMLElement>;
+
+    if (slideShow10[0].style.display == "none") {
       slideShow10[0].style.display = "block"
       slideShow11[0].style.display = "none"
-      
-    } else if(slideShow10[0].style.display == "block"){
+
+    } else if (slideShow10[0].style.display == "block") {
       slideShow10[0].style.display = "none"
       slideShow11[0].style.display = "block"
     }
-    else{
+    else {
       slideShow11[0].style.display = "none"
       slideShow10[0].style.display = "block"
     }
@@ -308,21 +392,21 @@ export class HomePage {
     // })
     this.service.uploadDocument().subscribe((_responseDocument: any) => {
       for (var z = 0; z < _responseDocument.length; z++) {
-        console.log(_responseDocument[z])
+        // console.log(_responseDocument[z])
 
         // this.image =_responseDocument[z].file_name
         this.uploadArr.push(_responseDocument[z].file_name)
         this.uploadArr.push(_responseDocument[z])
 
       }
-      console.log(this.uploadArr)
+      // console.log(this.uploadArr)
 
     })
   }
 
   getpersal() {
     this.service.getPersalNumber().subscribe((_response: any) => {
-      console.log(_response[0].persal_number)
+      // console.log(_response[0].persal_number)
     })
   }
 
@@ -475,9 +559,9 @@ export class HomePage {
         const blob = new Blob([pdf], { type: 'application/pdf' });
         const fileName = 'Database of Restricted Suppliers.pdf';
         saveAs(blob, fileName)
-        console.log(blob, fileName)
+        // console.log(blob, fileName)
       }, err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 

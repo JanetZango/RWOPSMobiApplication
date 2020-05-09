@@ -1,4 +1,11 @@
 page-home {
+  .content{
+    border:1.5px solid #a88d30;
+//     background-size:cover;
+//     background-image:
+// linear-gradient(to bottom, rgba(245, 246, 252, 0.891), rgba(250, 243, 243, 0.952)),
+// url('../../assets/icon/pngguru 1.png');
+}
     .theSlider {
       max-width: 100%;
       position: relative;
@@ -348,7 +355,7 @@ text-align: center;
 }
 .item2{ 
   // margin:20px auto;
-  width:10%;
+  width:100%;
   height: 5px;
   // text-align: left;
   border:1px solid rgba(75, 67, 67, 0.483);
@@ -429,7 +436,7 @@ text-align: center;
     padding-left:5px;
     // color:#a88d30;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1023px) {
   .theSlider {
     max-width: 100%;
     position: relative;
@@ -441,7 +448,7 @@ text-align: center;
     max-width: 100%;
     height: 100%;
     text-align: center;
-    // margin-top:70px;
+    margin-top:150px;
 
   
 

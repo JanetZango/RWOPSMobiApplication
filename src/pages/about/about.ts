@@ -30,9 +30,6 @@ export class AboutPage {
   constructor(public navCtrl: NavController,public navParams: NavParams, 
     public service: ServiceProvider) {
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
-   
-    // console.log(this.currentLoggedIn)
-    // console.log(this.currentLoggedIn[0][0].username)
     this.id = this.currentLoggedIn[0][0].id
     this.username = this.currentLoggedIn[0][0].username
     this.surname = this.currentLoggedIn[0][0].surname
@@ -42,67 +39,43 @@ export class AboutPage {
     this.getUserProfile();
     this.getApplication2()
   }
-
-  swipeNext(){
-    this.slides.slideNext();
-  }
-
   getUserProfile() {
     this.service.getUserProfile(this.id).subscribe((_responseData) => {
-      // console.log(_responseData)
-      // this.created_id = _responseData.id
       this.firstname = _responseData.firstname
       this.surname = _responseData.surname
       this.persal_number = _responseData.persal_number
-      // this.tel_number = _responseData.tel_number
-      // this.cell_number = _responseData.cell_number
-      // this.id_number = _responseData.id_number
-      // this.branch_id = _responseData.branch_id
       this.department_id = _responseData.department_id
       this.job_functions = _responseData.job_functions
-      // this.postal_address = _responseData.postal_address
-      // this.designation_id = _responseData.designation_id
-      // this.unit_id = _responseData.unit_id
-      // this.postal_code = _responseData.postal_code
-      // console.log(this.branch_id)
-      // console.log(_responseData)
-
   this.getDepartment();
     })
- 
     }
     getApplication2(){
       this.service.getApplication().subscribe(_response => {
-        console.log(_response)
-        this.firstname =_response.first_name
-        this.surname =_response.surname
-        this.status=_response.status_id
-        this.create_user_id=_response.create_user_id
-        console.log(this.create_user_id)
-  
-        this.getStatus = _response.status_id
-        console.log(this.getStatus)
+        for(var x =0; x < _response.length ;x++){
+          if(this.id == _response[x].create_user_id){
+           let obj = {
+            create_user_id: _response[x].create_user_id,
+            firstname: _response[x].first_name,
+            surname : _response[x].surname,
+            status: _response[x].status_id
+            }        
+          }
+        }
+        this.getStatus = obj.status
         this.getApplicationStatusMethod()
       })
-    
     }
-  
     getApplicationStatusMethod() {
       console.log(this.getStatus)
-      this.service.getApplicationStatus(this.status).subscribe(_responseDataStatus => {
+      this.service.getApplicationStatus(this.getStatus).subscribe(_responseDataStatus => {
       this.description =_responseDataStatus.description
-      // this.displayStatus.l
       this.displayStatus =_responseDataStatus.id
       console.log(this.displayStatus)
       })
     }
-  
     getDepartment() {
       this.service.getDepartment2(this.department_id).subscribe(_responseDataDepartment => {
         this.departmentDescription = _responseDataDepartment.description
-        
-  
-  
       })
   }
 
