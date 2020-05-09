@@ -153,7 +153,7 @@
       <br>
       <br>
       <p>Current working hours of the applicant (per week)</p>
-      <ion-item class="item2">
+      <ion-item class="item">
         <ion-label>
           <i class="fa fa-hourglass-3 icon"></i>
         </ion-label>
@@ -164,7 +164,7 @@
         <p>Please provide a current working hours</p>
       </div>
       <p>Call/standby duties hours (per week)</p>
-      <ion-item class="item2">
+      <ion-item class="item">
         <ion-label>
           <i class="fa fa-hourglass-3 icon"></i>
         </ion-label>
@@ -175,7 +175,7 @@
         <p>Please provide a standby duties hours</p>
       </div>
       <p>Current overtime hours worked (per month)</p>
-      <ion-item class="item2">
+      <ion-item class="item">
         <ion-label>
           <i class="fa fa-hourglass-end icon"></i>
         </ion-label>
@@ -235,9 +235,9 @@
         </p>
         <textarea type="text" id="desc" formControlName="nature_of_work" placeholder="Describe Nature of Work">
           </textarea>
-        <div class="field-error" *ngIf="_isInvalidControl('nature_of_work')">
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('nature_of_work')">
           <p>Please provide nature of work</p>
-        </div>
+        </div> -->
       </div>
       <p>Planned start date of other remunerative work</p>
       <ion-item class="item">
@@ -247,9 +247,9 @@
         <ion-input type="date" formControlName="start_date" placeholder="Start date">
         </ion-input>
       </ion-item>
-      <div class="field-error" *ngIf="_isInvalidControl('start_date')">
+      <!-- <div class="field-error" *ngIf="_isInvalidControl('start_date')">
         <p>Please provide a start date</p>
-      </div>
+      </div> -->
       <p>Planned end date of other remunerative work</p>
       <ion-item class="item">
         <ion-label>
@@ -258,9 +258,9 @@
         <ion-input type="date" formControlName="end_date" placeholder="End date">
         </ion-input>
       </ion-item>
-      <div class="field-error" *ngIf="_isInvalidControl('end_date')">
+      <!-- <div class="field-error" *ngIf="_isInvalidControl('end_date')">
         <p>Please provide end date</p>
-      </div>
+      </div> -->
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage7()">Next</button>
       </div>
@@ -275,76 +275,76 @@
         <input formControlName="mon_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
       </div>
     
-    <div class="field-error" *ngIf="_isInvalidControl('mon_start_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('mon_start_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('mon_end_hours')">
       <p>Please provide hours </p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Tuesday</p>
       <input formControlName="tue_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
         type="time" /> to
       <input formControlName="tue_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('tue_start_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('tue_start_hours')">
       <p>Please provide tuesday hours</p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Wednesday</p>
       <input formControlName="wed_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
       <input formControlName="wed_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('wed_end_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('wed_end_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('wed_start_hours')">
       <p>Please provide hours</p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Thursday</p>
       <input formControlName="thu_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
       <input formControlName="thu_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('thu_end_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('thu_end_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('thu_start_hours')">
       <p>Please provide hours</p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Friday</p>
       <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
       <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
       <p>Please provide hours</p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Saturday</p>
-      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input formControlName="sat_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="sat_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
       <p>Please provide hours</p>
-    </div>
+    </div> -->
     <div class="your-class">
       <p>Sunday</p>
-      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input formControlName="sun_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input formControlName="sun_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
-    <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
+    <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
     </div>
     <div class="field-error" *ngIf="_isInvalidControl('fri_start_hours')">
       <p>Please provide hours</p>
-    </div>
+    </div> -->
     <div class="movetopage2">
       <button ion-button id="movetopage2" (click)="moveToPage8()">Next</button>
     </div>
@@ -372,17 +372,17 @@
           <ion-input type="number" formControlName="total_working_hours" placeholder="Total number of hours planned">
           </ion-input>
         </ion-item>
-       <div class="field-error" *ngIf="_isInvalidControl('total_working_hours')">
+       <!-- <div class="field-error" *ngIf="_isInvalidControl('total_working_hours')">
           <p>Please provide total_working_hours</p>
-        </div>
+        </div> -->
        <p>Specify where the remunerative work will be performed (e.g. Home, Office, School,
           Door-to-door, etc.)</p>
         <textarea type="text" id="desc" formControlName="remunerative_work_performed"
           placeholder="Remunerative_work_performed">
                       </textarea> 
-         <div class="field-error" *ngIf="_isInvalidControl('Remunerative_work_performed')">
+         <!-- <div class="field-error" *ngIf="_isInvalidControl('Remunerative_work_performed')">
           <p>Please provide work performed</p>
-        </div> 
+        </div>  -->
    <p class="title_name">If the remunerative work will be undertaken with/in an established business
           ororganisation, please provide details</p>
 
@@ -394,9 +394,9 @@
           <ion-input type="text" formControlName="business_name" placeholder="Name of Business/Organization">
           </ion-input>
         </ion-item> 
-      <div class="field-error" *ngIf="_isInvalidControl('business')">
+      <!-- <div class="field-error" *ngIf="_isInvalidControl('business')">
           <p>Please provide business</p>
-        </div> 
+        </div>  -->
    </div>
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage9()">Next</button>
@@ -415,9 +415,9 @@
           <ion-input type="text" formControlName="reporting_person_surname" placeholder="Reporting_person_surname">
           </ion-input>
         </ion-item>
-        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_surname')">
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('reporting_person_surname')">
           <p>Please provide reporting_person_surname</p>
-        </div>
+        </div> -->
         <p>Initials</p>
         <ion-item class="item">
           <ion-label>
@@ -426,9 +426,9 @@
           <ion-input type="text" formControlName="reporting_person_initials" placeholder="Initials">
           </ion-input>
         </ion-item>
-        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_initials')">
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('reporting_person_initials')">
           <p>Please provide initials</p>
-        </div>
+        </div> -->
         <p>Contact number of business/organisation</p>
         <ion-item class="item">
           <ion-label>
@@ -438,9 +438,9 @@
             placeholder="Contact number of business/organisation">
           </ion-input>
         </ion-item>
-        <div class="field-error" *ngIf="_isInvalidControl('contact_number')">
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('contact_number')">
           <p>Please provide contact number</p>
-        </div>
+        </div> -->
         <p>Contact number of person you will be reporting to</p>
         <ion-item class="item">
           <ion-label>
@@ -450,9 +450,9 @@
             placeholder="Contact number of person you will be reporting to">
           </ion-input>
         </ion-item>
-        <div class="field-error" *ngIf="_isInvalidControl('reporting_person_contact_number')">
+        <!-- <div class="field-error" *ngIf="_isInvalidControl('reporting_person_contact_number')">
           <p>Please provide reporting person</p>
-        </div>
+        </div> -->
       </div>
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage10()">Next</button>
@@ -465,7 +465,7 @@
           <ion-icon class="Add" md="md-create-circle"></ion-icon>
         </label>
         <div class="img">
-          <img src="../../assets/imgs/default.png">
+          <img [src]="img">
         </div>    
         <ion-input type="file" accept="image/*" (change)="insertpic($event)"></ion-input>
         <h1>{{name}}</h1>
@@ -519,7 +519,7 @@
       <p class="degnPara">{{designated}}</p>
       <p class="mpvename">(Designated)</p>
       <div class="movetopage2">
-        <button ion-button id="movetopage2" (click)="moveToPage11()">Apply</button>
+        <button ion-button id="movetopage2" (click)="moveToPage12()">Apply</button>
       </div>
     </div>
   <!-- </div>  -->

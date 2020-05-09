@@ -95,7 +95,7 @@ export class HomePage {
   date;
   getExistingApplicationId;
   persalNumber;
-  img: string = '../assets/imgs/placeholder-image.png';
+  img: string = '../assets/imgs/default.png';
   upLoadDocument: File = null;
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -117,11 +117,12 @@ export class HomePage {
     this.getWorkCategory();
     this.getApplicationStatusMethod();
     this._buildForm();
+    this.getExistingApplication();
   }
   ionViewDidLoad() {
     this.getApplication();
     this.getpersal();
-    this.getExistingApplication();
+  
   }
   getExistingApplication(){
     this.service.getApplication().subscribe(_response => {
@@ -140,6 +141,7 @@ export class HomePage {
       
       this.getStatus = obj.status
       this.getExistingApplicationId = obj.application_id
+      console.log(this.getExistingApplicationId) 
       this.getApplicationStatusMethod()
     })
     console.log(this.getExistingApplicationId) 
@@ -237,15 +239,16 @@ export class HomePage {
   }
   moveToPage6() {
     // console.log(this.id)
-    this.Hours = new Hours();
-    this.Hours.current_working_hours = this.userForm.value.current_working_hours;
-    this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
-    this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
+    // this.Hours = new Hours();
+    // this.Hours.current_working_hours = this.userForm.value.current_working_hours;
+    // this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
+    // this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
 
-    this.Hours.create_user_id = this.id
-    this.service.createHours(this.Hours).subscribe((_response: any) => {
-      console.log(_response)
-    })
+    // this.Hours.create_user_id = this.id
+    // this.Hours.application_id =  this.getExistingApplicationId
+    // this.service.createHours(this.Hours).subscribe((_response: any) => {
+    //   console.log(_response)
+    // })
     // if(this.userForm.value.current_working_hours ==null || this.userForm.value.current_working_hours == undefined,
     //   this.Hours.standby_duties_hours ==null || this.Hours.standby_duties_hours ==undefined,
     //   this.Hours.current_overtime_hours_worked == null || this.Hours.current_overtime_hours_worked == undefined ){
@@ -348,6 +351,37 @@ export class HomePage {
     }
   }
   moveToPage10() {
+    // this.RemunerativeWork = new RemunerativeWork();
+    // this.RemunerativeWork.work_category_id = this.userForm.value.work_category_id;
+    // this.RemunerativeWork.nature_of_work = this.userForm.value.nature_of_work;
+    // this.RemunerativeWork.start_date = this.userForm.value.start_date;
+    // this.RemunerativeWork.end_date = this.userForm.value.end_date;
+    // this.RemunerativeWork.mon_start_hours = this.userForm.value.mon_start_hours;
+    // this.RemunerativeWork.mon_end_hours = this.userForm.value.mon_end_hours;
+    // this.RemunerativeWork.tue_start_hours = this.userForm.value.tue_start_hours;
+    // this.RemunerativeWork.tue_end_hours = this.userForm.value.tue_end_hours;
+    // this.RemunerativeWork.wed_start_hours = this.userForm.value.wed_start_hours;
+    // this.RemunerativeWork.wed_end_hours = this.userForm.value.wed_end_hours;
+    // this.RemunerativeWork.thu_start_hours = this.userForm.value.thu_start_hours;
+    // this.RemunerativeWork.thu_end_hours = this.userForm.value.thu_end_hours;
+    // this.RemunerativeWork.fri_start_hours = this.userForm.value.fri_start_hours;
+    // this.RemunerativeWork.fri_end_hours = this.userForm.value.fri_end_hours;
+    // this.RemunerativeWork.sat_start_hours = this.userForm.value.sat_start_hours;
+    // this.RemunerativeWork.sat = this.userForm.value.sat_end_hours;
+    // this.RemunerativeWork.sun_start_hours = this.userForm.value.sun_start_hours;
+    // this.RemunerativeWork.sun_end_hours = this.userForm.value.sun_end_hours;
+    // this.RemunerativeWork.total_working_hours = this.userForm.value.total_working_hours;
+    // this.RemunerativeWork.remunerative_work_performed = this.userForm.value.remunerative_work_performed;
+    // this.RemunerativeWork.business_name = this.userForm.value.business_name;
+    // this.RemunerativeWork.reporting_person_surname = this.userForm.value.reporting_person_surname;
+    // this.RemunerativeWork.reporting_person_initials = this.userForm.value.reporting_person_initials;
+    // this.RemunerativeWork.contact_number = this.userForm.value.contact_number;
+    // this.RemunerativeWork.reporting_person_contact_number = this.userForm.value.reporting_person_contact_number; 
+
+    // this.RemunerativeWork.application_id = this.getExistingApplicationId;
+    // this.service.createRemunerativeWork(this.RemunerativeWork).subscribe((_response: any) => {
+    //  console.log(_response)
+    // });
     let slideShow9 = document.getElementsByClassName('slideShow9') as HTMLCollectionOf<HTMLElement>;
     let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
 
@@ -365,6 +399,8 @@ export class HomePage {
     }
   }
   moveToPage11() {
+
+
     let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
     let slideShow11 = document.getElementsByClassName('slideShow11') as HTMLCollectionOf<HTMLElement>;
 
@@ -537,6 +573,10 @@ export class HomePage {
       'thu_end_hours': ['', [Validators.required, Validators]],
       'fri_start_hours': ['', [Validators.required, Validators]],
       'fri_end_hours': ['', [Validators.required, Validators]],
+      'sat_start_hours': ['', [Validators.required, Validators]],
+      'sat_end_hours': ['', [Validators.required, Validators]],
+      'sun_start_hours': ['', [Validators.required, Validators]],
+      'sun_end_hours': ['', [Validators.required, Validators]],
       'total_working_hours': ['', [Validators.required, Validators]],
       'remunerative_work_performed': ['', [Validators.required, Validators]],
       'business_name': ['', [Validators.required, Validators]],
@@ -622,28 +662,7 @@ export class HomePage {
     //   this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
 
 
-    //   this.RemunerativeWork = new RemunerativeWork();
-    //   this.RemunerativeWork.work_category_id = this.userForm.value.work_category_id;
-    //   this.RemunerativeWork.nature_of_work = this.userForm.value.nature_of_work;
-    //   this.RemunerativeWork.start_date = this.userForm.value.start_date;
-    //   this.RemunerativeWork.end_date = this.userForm.value.end_date;
-    //   this.RemunerativeWork.mon_start_hours = this.userForm.value.mon_start_hours;
-    //   this.RemunerativeWork.mon_end_hours = this.userForm.value.mon_end_hours;
-    //   this.RemunerativeWork.tue_start_hours = this.userForm.value.tue_start_hours;
-    //   this.RemunerativeWork.tue_end_hours = this.userForm.value.tue_end_hours;
-    //   this.RemunerativeWork.wed_start_hours = this.userForm.value.wed_start_hours;
-    //   this.RemunerativeWork.wed_end_hours = this.userForm.value.wed_end_hours;
-    //   this.RemunerativeWork.thu_start_hours = this.userForm.value.thu_start_hours;
-    //   this.RemunerativeWork.thu_end_hours = this.userForm.value.thu_end_hours;
-    //   this.RemunerativeWork.fri_start_hours = this.userForm.value.fri_start_hours;
-    //   this.RemunerativeWork.fri_end_hours = this.userForm.value.fri_end_hours;
-    //   this.RemunerativeWork.total_working_hours = this.userForm.value.total_working_hours;
-    //   this.RemunerativeWork.remunerative_work_performed = this.userForm.value.remunerative_work_performed;
-    //   this.RemunerativeWork.business_name = this.userForm.value.business_name;
-    //   this.RemunerativeWork.reporting_person_surname = this.userForm.value.reporting_person_surname;
-    //   this.RemunerativeWork.reporting_person_initials = this.userForm.value.reporting_person_initials;
-    //   this.RemunerativeWork.contact_number = this.userForm.value.contact_number;
-    //   this.RemunerativeWork.reporting_person_contact_number = this.userForm.value.reporting_person_contact_number;
+  
 
 
     //   this.UpdateApplication = new UpdateApplication
