@@ -106,7 +106,7 @@ export class LoginPage {
           this.navCtrl.setRoot(TabsPage, { orgObject: this.displayUser });
         }
         else {
-          // console.log('error')
+          console.log('error')
         }
       }
     }, _error => {

@@ -41,10 +41,11 @@ export class ContactPage{
           firstname: _response[x].first_name,
           surname : _response[x].surname,
           status: _response[x].status_id
-          }        
+          }    
+          this.getStatus = obj.status    
         }
       }
-      this.getStatus = obj.status
+     
       this.getApplicationStatusMethod()
     })
   }

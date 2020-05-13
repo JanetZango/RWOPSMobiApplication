@@ -1,6 +1,6 @@
 <ion-content class="content">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <form [formGroup]="userForm" class="mainContainerForm" (ngSubmit)="formSubmit()"> 
+ <form [formGroup]="userForm"  class="mainContainerForm" (ngSubmit)="formSubmit()"> 
     <div>
       <div class="slideShow">
         <img src="../../assets/imgs/logo2.jpg">
@@ -467,8 +467,11 @@
         <div class="img">
           <img [src]="img">
         </div>    
-        <ion-input type="file" accept="image/*" (change)="insertpic($event)"></ion-input>
+        <input id="file" type="file" accept="image/*" (change)="insertpic($event)">
         <h1>{{name}}</h1>
+      </div>
+      <div class="movetopage2">
+        <button ion-button id="movetopage2" (click)="uploadDocument()">Upload Document</button>
       </div>
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage11()">Next</button>

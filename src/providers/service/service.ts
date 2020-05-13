@@ -306,7 +306,7 @@ export class ServiceProvider {
   }
 
   uploadDocument(){
-    const url = `${this.baseUrl}/api/ApplicationDocument/Get/1`;
+    const url = `${this.baseUrl}/api/ApplicationDocument/Get/64`;
     // console.log(url)
     var dataUser = this.http.get(url,httpOptions)
     // console.log(dataUser)

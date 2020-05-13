@@ -58,10 +58,12 @@ export class AboutPage {
             firstname: _response[x].first_name,
             surname : _response[x].surname,
             status: _response[x].status_id
-            }        
+            }    
+            console.log(obj)   
+            this.getStatus = obj.status 
           }
         }
-        this.getStatus = obj.status
+    
         this.getApplicationStatusMethod()
       })
     }
