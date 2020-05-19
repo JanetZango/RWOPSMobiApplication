@@ -13,6 +13,7 @@ export class Application {
     public unit_id: number;
     public job_functions: string;
     public id: number;
+    public job_title_id=1;
     public create_user_id:number;
     public status_id=2
     public section_id=5;

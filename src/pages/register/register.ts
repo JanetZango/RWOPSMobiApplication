@@ -62,7 +62,11 @@ export class RegisterPage {
   getProfile() {
     this.service.getUserProfile2().subscribe((_responseDataProfile) => {
       console.log(_responseDataProfile)
-      this.superviorname = _responseDataProfile.firstname
+      // for(var x =0; x < _responseDataProfile.length ;x++){
+        this.superviorname = _responseDataProfile[0].firstname
+      //   console.log(this.superviorname)
+      // }
+     
       this.superviorsurname = _responseDataProfile.surname
       this.superviorid = _responseDataProfile.id
       this.supervioremail = _responseDataProfile.email
@@ -218,7 +222,7 @@ export class RegisterPage {
       this.UserProfile.designation_id = this.UserProfile.designation_id
       this.service.createProfile(this.UserProfile).subscribe((_responseUser: any) => {
         const toast = this.toastCtrl.create({
-          message: 'Applicant has successfully registered',
+          message: 'User has successfully registered',
           duration: 3000
         });
         toast.present();

@@ -121,7 +121,7 @@ export class HomePage {
     this.getExistingApplication();
 
     this.service.uploadDocument().subscribe(_response => {
-    console.log(_response)
+      console.log(_response)
     })
   }
   ionViewDidLoad() {
@@ -221,6 +221,7 @@ export class HomePage {
     // this.Application.postal_code = this.userForm.value.postal_code;
     // this.Application.status_id = this.Application.status_id;
     // console.log(this.id)
+    // this.Application.job_title_id = this.Application.job_title_id;
     // this.Application.application_date = this.date
     // this.Application.create_user_id = this.id;
     // this.Application.id = this.id;
@@ -373,7 +374,7 @@ export class HomePage {
     // this.RemunerativeWork.fri_start_hours = this.userForm.value.fri_start_hours;
     // this.RemunerativeWork.fri_end_hours = this.userForm.value.fri_end_hours;
     // this.RemunerativeWork.sat_start_hours = this.userForm.value.sat_start_hours;
-    // this.RemunerativeWork.sat = this.userForm.value.sat_end_hours;
+    // this.RemunerativeWork.sat_end_hours = this.userForm.value.sat_end_hours;
     // this.RemunerativeWork.sun_start_hours = this.userForm.value.sun_start_hours;
     // this.RemunerativeWork.sun_end_hours = this.userForm.value.sun_end_hours;
     // this.RemunerativeWork.total_working_hours = this.userForm.value.total_working_hours;
@@ -406,7 +407,6 @@ export class HomePage {
   }
   moveToPage11() {
 
-
     let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
     let slideShow11 = document.getElementsByClassName('slideShow11') as HTMLCollectionOf<HTMLElement>;
 
@@ -424,9 +424,14 @@ export class HomePage {
     }
   }
   moveToPage12() {
-    this.service.Declaration(this.getExistingApplicationId).subscribe((_response) => {
-      console.log(_response)
-    })
+    // this.service.Declaration(this.getExistingApplicationId).subscribe((_response) => {
+    //   console.log(_response)
+    // })
+    // const toast = this.toastCtrl.create({
+    //   message: 'You have succesfully applied',
+    //   duration: 4000
+    // });
+    // toast.present();
   }
 
 
@@ -604,10 +609,10 @@ export class HomePage {
 
   uploadDocument() {
     let body = new FormData();
-    body.append('img', this.upLoadDocument, this.upLoadDocument.name);
-    this.img = this.upLoadDocument.name
-    console.log(this.img)
-    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id='+this.getExistingApplicationId,body)
+    body.append('img', this.img);
+    // this.img = this.upLoadDocument.name
+    // console.log(this.img)
+    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.getExistingApplicationId, body)
       .subscribe(res => {
         console.log(res)
         const toast = this.toastCtrl.create({
@@ -618,36 +623,25 @@ export class HomePage {
 
 
       })
+     
   }
 
   insertpic(event: any) {
-    console.log(event)
-    this.upLoadDocument = <File>event.target.files[0]
-    // reader.readAsDataURL(event.target.files[0]);
-    console.log(this.upLoadDocument.name)
-    this.img = this.upLoadDocument.name
-    console.log(this.img)
-
-
-    // let reader = new FileReader();
-
-    // reader.onload = (event: any) => {
-      // this.img = <File>event.target.result;
+    // console.log(event)
+    // this.upLoadDocument = <File>event.target.files[0]
+    // console.log(this.uploadArr)
+    // console.log(this.upLoadDocument.name)
+    // this.img = this.upLoadDocument.name
+    // console.log(this.img)
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.img = event.target.result;
     }
-    // reader.readAsDataURL(event.target.files[0]);
-
-
-
-  
-
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 
   formSubmit() {
-
-   
-
-
-
   }
   _isInvalidControl(name: string) {
     return this.userForm.get(name).invalid && this.userForm.get(name).dirty;

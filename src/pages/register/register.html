@@ -10,7 +10,7 @@
     <h1>Sign-up</h1>
     <form [formGroup]="userForm" (ngSubmit)="formSubmit()">
       <ion-slides pager="true" class="slide">
-        <ion-slide>
+        <ion-slide class="content">
           <ion-item>
             <ion-label>
               <i class="fa fa-user icon"></i>
@@ -183,9 +183,9 @@
             <p>Please re-enter your password it does not match</p>
           </div>
           <br>
-          <button ion-button block type="submit" color="btn" >Sign Up</button>
+          <button ion-button block type="submit"  color="primary" >Sign Up</button>
           <!-- <br> -->
-          <button ion-button clear block (click)="signIn()">Go Back To &nbsp; <b>Sign In</b> </button>        
+          <button ion-button clear block (click)="signIn()" color="dark">Go Back To &nbsp; <b>Sign In</b> </button>        
         </ion-slide>
       </ion-slides>
     

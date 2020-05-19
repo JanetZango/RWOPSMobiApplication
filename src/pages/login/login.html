@@ -6,7 +6,7 @@
   </div>
   <div padding style="position: relative; top: 0%;">
     <h1>Sign-in</h1>
-    <form [formGroup]="userForm" (ngSubmit)="getEmail()">
+    <form [formGroup]="userForm" >
       <ion-item>
         <ion-label>
           <i class="fa fa-envelope"></i>
@@ -29,7 +29,7 @@
       </div>
       <br>
       <br>
-      <button ion-button block type="submit"  color="primary">Sign in</button>
+      <button ion-button block  (click)="getEmail()"  color="primary">Sign in</button>
       <button (click)="signup()" ion-button clear block color="dark">You haven't Registered? &nbsp; <b>Sign up</b> </button>
     </form>
   </div>
