@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-toolbar color="secondary">
+    <ion-title id="tit" align="center">Upload Signature</ion-title>
+    <ion-buttons left>
+      <button ion-button color="primary" class="closeBtn" clear icon-only large (click)="dismiss()">
+        <ion-icon id="backBTN" name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h3>Section D: Declaration</h3>
+  <p class="declarationParagraph">I <b>{{firstname}} {{surname}}</b> hereby confirm that the information
+    supplied in this
+    application
+    form is correct and undertake to assist my
+    department in meeting its service delivery demands, including overtime commitments (if applicable), which
+    includes being on call/standby (when applicable) as scheduled. I acknowledge that my first commitment is to
+    meet the operational objectives of my department.
+    I confirm that my performance of other remunerative work will in no way interfere with my commitments to my
+    department.
+    I confirm that my performance of other remunerative work will not take place during the hours I am required
+    for duties as agreed in my employment contract.
+    I confirm that I will not use any state resources for the purpose of performing other remunerative work.
+    I accept that I shall not conduct business with any organ of the state, either in person or as part of an
+    entity (including non-profit organisations).
+    I accept that permission to perform other remunerative work is only granted for the time agreed upon (and
+    reflected on the certificate of approval), and that it only applies to the services/types of remunerative
+    work
+    as indicated in this application form.
+    I accept that, should I wish to continue with such remunerative work, I must submit a new application at
+    least
+    30 days before expiry.
+    I accept that non-compliance with any of the conditions, monitoring or control measures pertaining to other
+    remunerative work may lead to disciplinary action and that the sanction imposed includes forfeiture of
+    remuneration and/or benefits gained.
+    I accept that the normal policies and measures governing discipline also apply in terms of non-compliance
+    with
+    the other remunerative work policy and measures.
+    I agree to abide by any control measures applicable to the other remunerative work system, including that it
+    may be required of me to sign in and out each time I enter or exit the institution where I perform my basic
+    or
+    overtime duties.
+    I agree to attach the certificate of approval when disclosing my financial interests, if applicable.
+    I acknowledge that the Executive Authority or delegated authority can, at any time, terminate my
+    authorisation
+    to perform other remunerative work, based on a change in operational requirements and/or poor performance on
+    my part.</p>
+<br>
+<br>
+<br>
+  <p class="sign">Signature of Applicant</p>
+<button ion-button full (click)="createPdf()">Create PDF</button>
+<button ion-button full (click)="downloadPdf()">Download PDF</button>
+</ion-content>

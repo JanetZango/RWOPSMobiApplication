@@ -11,6 +11,8 @@ import { UpdateApplication } from '../../model/updateapplication.model'
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { saveAs } from 'file-saver';
 import { Observable, Subject } from 'rxjs';
+import { ModalController, ViewController } from 'ionic-angular';
+import { GenerateDocumentPage } from '../generate-document/generate-document';
 
 @Component({
   selector: 'page-home',
@@ -98,6 +100,7 @@ export class HomePage {
   img: string = '../assets/imgs/default.png';
   upLoadDocument: File = null;
   getStatus: any;
+  getCurrentUser = new Array();
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     public verifyLogin: ServiceProvider,
@@ -105,7 +108,9 @@ export class HomePage {
     public service: ServiceProvider,
     private formBuilder: FormBuilder,
     public toastCtrl: ToastController,
-    public http: HttpClient
+    public http: HttpClient,
+    public viewCtrl: ViewController,
+    public modalCtrl: ModalController
   ) {
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
     this.date = new Date().toISOString()
@@ -488,6 +493,9 @@ export class HomePage {
       // console.log(this.branch_id)
       console.log(_responseData)
 
+      this.getCurrentUser.push(_responseData)
+      console.log(this.getCurrentUser)
+
       this.getBranch();
       this.getDepartment();
       this.getDesignation();
@@ -609,7 +617,7 @@ export class HomePage {
 
   uploadDocument() {
     let body = new FormData();
-    body.append('img', this.img);
+    body.append('img', this.upLoadDocument.name);
     // this.img = this.upLoadDocument.name
     // console.log(this.img)
     this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.getExistingApplicationId, body)
@@ -625,19 +633,23 @@ export class HomePage {
       })
      
   }
+  generatepdf(){
+    const modal = this.modalCtrl.create(GenerateDocumentPage,{ orgObject: this.getCurrentUser });
+    modal.present();
+  }
 
   insertpic(event: any) {
-    // console.log(event)
-    // this.upLoadDocument = <File>event.target.files[0]
+    console.log(event)
+    this.upLoadDocument = <File>event.target.files[0]
     // console.log(this.uploadArr)
-    // console.log(this.upLoadDocument.name)
-    // this.img = this.upLoadDocument.name
-    // console.log(this.img)
-    let reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.img = event.target.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
+    console.log(this.upLoadDocument.name)
+    this.img = this.upLoadDocument.name
+    console.log(this.img)
+    // let reader = new FileReader();
+    // reader.onload = (event: any) => {
+    //   this.img = event.target.result;
+    // }
+    // reader.readAsDataURL(event.target.files[0]);
   }
 
 

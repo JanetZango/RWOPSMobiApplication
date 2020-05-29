@@ -2,7 +2,10 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -16,6 +19,9 @@ import { RegisterPage } from '../pages/register/register';
 import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { ServiceProvider } from '../providers/service/service';
 import { ConfigService } from "../providers/service/ConfigService";
+import { GenerateDocumentPage } from '../pages/generate-document/generate-document';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +31,8 @@ import { ConfigService } from "../providers/service/ConfigService";
     TabsPage,
     LoginPage,
     RegisterPage,
-    TestpasswordPage
+    TestpasswordPage,
+    GenerateDocumentPage
   ],
   imports: [
     BrowserModule,
@@ -41,14 +48,18 @@ import { ConfigService } from "../providers/service/ConfigService";
     TabsPage,
     LoginPage,
     RegisterPage,
-    TestpasswordPage
+    TestpasswordPage,
+    GenerateDocumentPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
-    ConfigService
+    ConfigService,
+    File,
+    FileOpener,
+   
   ]
 })
 export class AppModule {}

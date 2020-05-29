@@ -41,7 +41,17 @@ export class ServiceProvider {
   }
 
 
-
+   generatetken(token) {
+    const url = `https://uatapi.signinghub.co.za/authenticate`;
+    console.log(url)
+    var data = this.http.post(url,token,httpOptions)
+    console.log(data)
+    return data  
+      .pipe(
+        catchError(this.handleError)
+      );
+      
+  }
   createHours(Hours:Hours) {
     const url = `${this.baseUrl}/api/workinghours/post`;
     console.log(url)
