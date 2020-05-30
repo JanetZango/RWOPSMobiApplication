@@ -10,6 +10,7 @@ import {Application} from '../../model/application.model'
 import {Hours} from '../../model/hours.model'
 import {RemunerativeWork} from '../../model/remunerative_work.model'
 import {UpdateApplication} from '../../model/updateapplication.model'
+import {Token} from '../../model/token.model'
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -41,10 +42,10 @@ export class ServiceProvider {
   }
 
 
-   generatetken(token) {
+   generatetken(Token:Token) {
     const url = `https://uatapi.signinghub.co.za/authenticate`;
     console.log(url)
-    var data = this.http.post(url,token,httpOptions)
+    var data = this.http.post(url,Token,httpOptions)
     console.log(data)
     return data  
       .pipe(
