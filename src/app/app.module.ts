@@ -20,6 +20,7 @@ import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { ServiceProvider } from '../providers/service/service';
 import { ConfigService } from "../providers/service/ConfigService";
 import { GenerateDocumentPage } from '../pages/generate-document/generate-document';
+import { LandingpagePage } from '../pages/landingpage/landingpage';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { GenerateDocumentPage } from '../pages/generate-document/generate-docume
     LoginPage,
     RegisterPage,
     TestpasswordPage,
-    GenerateDocumentPage
+    GenerateDocumentPage,
+    LandingpagePage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { GenerateDocumentPage } from '../pages/generate-document/generate-docume
     LoginPage,
     RegisterPage,
     TestpasswordPage,
-    GenerateDocumentPage
+    GenerateDocumentPage,
+    LandingpagePage
   ],
   providers: [
     StatusBar,

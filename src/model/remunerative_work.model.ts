@@ -25,4 +25,6 @@ public reporting_person_surname:string
 public reporting_person_initials:string
 public contact_number:number
 public reporting_person_contact_number:number
+public create_time:number;
+public create_user_id:number;
 }

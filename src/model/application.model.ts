@@ -19,6 +19,7 @@ export class Application {
     public section_id=5;
     public user_role_id=2
     public application_date:number;
+    public create_time:number;
 
 
 

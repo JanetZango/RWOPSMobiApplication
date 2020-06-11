@@ -10,6 +10,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { ToastController } from 'ionic-angular';
 import { RsaIdValidator } from "../../providers/validators/rsaid.validator";
 import { MustMatch } from '../../providers/validators/rsaid.validator';
+import { ThrowStmt } from '@angular/compiler';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -32,14 +33,12 @@ export class RegisterPage {
   showQuestionsPassword: boolean = false
   disableDistrictDropdown = true;
   disableMunicipalityDropdown = true;
-  listOriginalLookupDistrict = [];
   listFilteredLookupDistrict = [];
-  listOriginalLookupMunicipality = [];
-  listFilteredLookupMunicipality = [];
-  listFilteredLookupJob = [];
+  listFilteredLookupHospital = [];
+  listFilteredLookupNursing = [];
   listFilteredLookupDesignated = [];
   listFilteredLookupSupervior = [];
-  listFilteredLookupUnit = [];
+  listFilteredLookupLaundries = [];
   superviorname;
   superviorsurname;
   supervioremail
@@ -51,64 +50,57 @@ export class RegisterPage {
     public toastCtrl: ToastController
   ) {
     this._buildForm();
-    this.getBranch();
-    this.getDepartment();
-    this.getJob();
+    this.getDistrict();
+    this.getHospital();
+    this.getNursing();
     this.getDesignation();
-    this.getUnit();
-    this.getProfile()
+    this.getLaundries();
+    this.getProfile();
   }
 
-  getProfile() {
-    this.service.getUserProfile2().subscribe((_responseDataProfile) => {
-      console.log(_responseDataProfile)
-      // for(var x =0; x < _responseDataProfile.length ;x++){
+    /***get the  */
+    getProfile() {
+      this.service.getUserProfile2().subscribe((_responseDataProfile) => {
         this.superviorname = _responseDataProfile[0].firstname
-      //   console.log(this.superviorname)
-      // }
-     
-      this.superviorsurname = _responseDataProfile.surname
-      this.superviorid = _responseDataProfile.id
-      this.supervioremail = _responseDataProfile.email
-      this.listFilteredLookupSupervior = _responseDataProfile
+        this.superviorsurname = _responseDataProfile.surname
+        this.superviorid = _responseDataProfile.id
+        this.supervioremail = _responseDataProfile.email
+        this.listFilteredLookupSupervior = _responseDataProfile
+      })
+    }
+
+    // *********lookups
+  /*district*/  //branch
+  getDistrict() {
+    this.service.getDistrictOffice().subscribe(_responseDataDistrict => {
+      console.log(_responseDataDistrict)
+      this.listFilteredLookupDistrict = _responseDataDistrict
     })
   }
 
-  getBranch() {
-    this.service.getBranch().subscribe(_responseDataBranch => {
-      console.log(_responseDataBranch)
-      this.listFilteredLookupMunicipality = _responseDataBranch;
-      // console.log(this.listFilteredLookupMunicipality)
-      // this.listOriginalLookupMunicipality = _responseDataBranch;
-    })
-  }
-
-
-  getDepartment() {
-    this.service.getDepartment().subscribe(_responseDataDepartment => {
-      // console.log(_responseDataDepartment)
-      this.listFilteredLookupDistrict = _responseDataDepartment
-
-
+  /*hospital*/  //department
+  getHospital() {
+    this.service.getHospital().subscribe(_responseDataHospital => {
+      this.listFilteredLookupHospital = _responseDataHospital
     })
   }
   getDesignation() {
     this.service.getDesignation().subscribe(_responseDataDesignation => {
-      // console.log(_responseDataDesignation)
       this.listFilteredLookupDesignated = _responseDataDesignation
     })
   }
-
-  getJob() {
-    this.service.getJob().subscribe(_responseDataJob => {
-      // console.log(_responseDataJob)
-      this.listFilteredLookupJob = _responseDataJob
+  /*nusuring colleges*/    //job
+  getNursing() {
+    this.service.getNursingCollege().subscribe(_responseDataNursing=> {
+      this.listFilteredLookupNursing= _responseDataNursing
     })
   }
-  getUnit() {
-    this.service.getUnit().subscribe(_responseDataUnit => {
-      // console.log(_responseDataUnit)
-      this.listFilteredLookupUnit = _responseDataUnit
+
+  /*laundries*/  //unit
+  getLaundries() {
+    this.service.getLaundries().subscribe(_responseDataLaundries => {
+      this.listFilteredLookupLaundries = _responseDataLaundries
+      console.log(this.listFilteredLookupLaundries)
     })
   }
 
@@ -134,6 +126,9 @@ export class RegisterPage {
   signIn() {
     this.navCtrl.push(LoginPage)
   }
+
+
+  // *requiremnts of the form
   _buildForm() {
     this.userForm = this.formBuilder.group({
       'choose': ['', [Validators.required, Validators]],
@@ -144,7 +139,6 @@ export class RegisterPage {
       'unit_id': ['', [Validators.required, Validators]],
       'confirmPassword': ['', [Validators.required, Validators]],
       'password_hash': ['', [Validators.required, Validators]],
-      // 'designation_id': ['', [Validators.required, Validators]],
       'department_id': ['', [Validators.required, Validators]],
       'tel_number': ['', [Validators.required, Validators.minLength(9), Validators.maxLength(15),]],
       'id_number': ['', [Validators.required, RsaIdValidator.isValid,]],
@@ -152,8 +146,6 @@ export class RegisterPage {
       'persal_number': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5),]],
       'job_title_id': ['', [Validators.required, Validators]],
       'cell_number': ['', [Validators.required, Validators.minLength(9), Validators.maxLength(15),]],
-      // 'postal_code': ['', [Validators.required, Validators]],
-      // 'postal_address': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),]],
     }, {
       validator: MustMatch('password_hash', 'confirmPassword')
 
@@ -161,16 +153,13 @@ export class RegisterPage {
 
   }
 
+
+
+  // **filter the selected data
   Assessment() {
     if (this.userForm.value.choose == "1") {
       this.showQuestions2 = true;
-      // console.log("show")
     }
-    // else {
-    //   this.showQuestions2 = false
-
-    // }
-
     else if (this.userForm.value.choose = "2") {
       this.showQuestionsPassword = true
     }
@@ -182,12 +171,13 @@ export class RegisterPage {
   }
   convertPassword() {
     var pass = Md5.hashStr('password_hash')
-    // console.log(pass)
   }
+
+
+  // **submit data 
 
   formSubmit() {
     this.UserProfile = new UserProfile();
-    // console.log(this.UserProfile)
     this.UserProfile.firstname = this.userForm.value.firstname;
     this.UserProfile.surname = this.userForm.value.surname;
     this.UserProfile.email = this.userForm.value.email;
@@ -205,8 +195,7 @@ export class RegisterPage {
     this.UserProfile.supervisor_id = this.userForm.value.supervisor_id;
 
 
-     this.User = new User();
-    // this.userForm.value.password_hash = (Md5.hashStr('password_hash')as string)
+    this.User = new User();
     this.User.password_hash = this.userForm.value.password_hash;
     this.User.username = this.userForm.value.username;
     this.User.email = this.userForm.value.email;
@@ -231,19 +220,14 @@ export class RegisterPage {
     });
   }
 
+
+  // ***display error if data not entered
   _isInvalidControl(name: string) {
     return this.userForm.get(name).invalid && this.userForm.get(name).dirty;
   }
 
-  onchangeDistrict() {
-    const _districtGuid = this.userForm.get('department_id').value;
-    this.disableMunicipalityDropdown = false;
-    this._updateMunicipality(_districtGuid);
-  }
 
-  _updateMunicipality(id: number) {
-    this.listFilteredLookupMunicipality = this.listOriginalLookupMunicipality.filter(x => x.id === id);
-    // console.log(this.listFilteredLookupMunicipality)
-  }
+
+
 
 }

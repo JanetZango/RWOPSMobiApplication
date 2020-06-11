@@ -8,12 +8,13 @@ import { LoginPage } from '../pages/login/login';
 import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { RegisterPage } from '../pages/register/register';
 import { timer } from 'rxjs/observable/timer';
+import { LandingpagePage } from '../pages/landingpage/landingpage';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = LandingpagePage;
   showSplash = true;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

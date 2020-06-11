@@ -102,45 +102,45 @@
         <ion-slide>
 
           <ion-item>
-            <ion-label>Select Department</ion-label>
+            <ion-label>Select Hospital</ion-label>
             <ion-select formControlName="department_id">
-              <ion-option *ngFor="let district of listFilteredLookupDistrict" [value]="district.id">
+              <ion-option *ngFor="let district of listFilteredLookupHospital" [value]="district.id">
                 {{district.description}}</ion-option>
             </ion-select>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('department_id')">
-            <p>Please select department</p>
+            <p>Please select hospital</p>
           </div>
           <ion-item>
-            <ion-label>Select Branch</ion-label>
+            <ion-label>Select DistrictOffice</ion-label>
             <ion-select formControlName="branch_id">
-              <ion-option *ngFor="let district of listFilteredLookupMunicipality" [value]="district.department_id">
+              <ion-option *ngFor="let district of listFilteredLookupDistrict" [value]="district.department_id">
                 {{district.description}}</ion-option>
             </ion-select>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('branch_id')">
-            <p>Please slect branchr</p>
+            <p>Please slect district</p>
           </div>
           <ion-item>
 
-            <ion-label>Select Job</ion-label>
+            <ion-label>Select NursingCollege</ion-label>
             <ion-select formControlName="job_title_id">
-              <ion-option *ngFor="let district of listFilteredLookupJob" [value]="district.id">{{district.description}}
+              <ion-option *ngFor="let district of listFilteredLookupNursing" [value]="district.id">{{district.description}}
               </ion-option>
             </ion-select>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('job_title_id')">
-            <p>Please select job title</p>
+            <p>Please select nursing college</p>
           </div>
           <ion-item>
-            <ion-label>Select Unit</ion-label>
+            <ion-label>Select Laundries</ion-label>
             <ion-select formControlName="unit_id">
-              <ion-option *ngFor="let district of listFilteredLookupUnit" [value]="district.id">{{district.description}}
+              <ion-option *ngFor="let district of listFilteredLookupLaundries" [value]="district.id">{{district.description}}
               </ion-option>
             </ion-select>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('unit_id')">
-            <p>Please select unit</p>
+            <p>Please select laundries</p>
           </div>
         </ion-slide>
         <ion-slide>
@@ -183,9 +183,13 @@
             <p>Please re-enter your password it does not match</p>
           </div>
           <br>
-          <button ion-button block type="submit"  color="primary" >Sign Up</button>
-          <!-- <br> -->
-          <button ion-button clear block (click)="signIn()" color="dark">Go Back To &nbsp; <b>Sign In</b> </button>        
+          <div class="buttonDiv">
+            <button ion-button block type="submit"  color="primary" >Sign Up</button>
+          </div>
+          <div class="buttonDiv2">
+            <button ion-button clear block (click)="signIn()" color="dark">Go Back To &nbsp; <b>Sign In</b> </button>  
+          </div>
+             
         </ion-slide>
       </ion-slides>
     

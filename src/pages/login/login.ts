@@ -9,12 +9,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../../model/user.model';
 import { HomePage } from '../home/home';
 import { LoadingController } from 'ionic-angular';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 export interface AuthResponseData {
   email: string
   username: string
@@ -36,6 +31,9 @@ export class LoginPage {
   lowdesign: boolean = true
   email
   password_hash;
+
+
+  // arrays
   displayUser = new Array();
 
   constructor(public navCtrl: NavController,
@@ -49,10 +47,8 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad LoginPage');
-    // this.verifyLogin.getUser().subscribe(_responseData => {
-    //   console.log(_responseData)
-    // });
+    this.verifyLogin.getUser().subscribe(_responseData => {
+    });
   }
 
   onInput($event) {
@@ -74,6 +70,9 @@ export class LoginPage {
   signup() {
     this.navCtrl.push(RegisterPage)
   }
+
+
+  // **validate the form inputs
   _buildForm() {
     this.userForm = this.formBuilder.group({
       'email': ['', [Validators.required, Validators.email]],
@@ -82,6 +81,8 @@ export class LoginPage {
     })
   }
 
+
+  // login method
   getEmail() {
     this.verifyLogin.getUser().subscribe(_responseData => {
       for (var x = 0; x < _responseData.length; x++) {

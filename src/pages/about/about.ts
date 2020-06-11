@@ -76,7 +76,7 @@ export class AboutPage {
       })
     }
     getDepartment() {
-      this.service.getDepartment2(this.department_id).subscribe(_responseDataDepartment => {
+      this.service.getHospital2(this.department_id).subscribe(_responseDataDepartment => {
         this.departmentDescription = _responseDataDepartment.description
       })
   }

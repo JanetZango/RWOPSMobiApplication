@@ -1,0 +1,59 @@
+page-landingpage {
+.top-top{
+    background-color:#a88d30;  
+    height:9%;
+    color:white;
+    font-size: 1.2em;
+    padding-left:15px;
+    padding-top:20px;
+    }
+  
+.top{
+    color:#ffffff;
+    font-size: 1.4em;
+    text-align: center;
+    padding-top:70px;
+    // margin-top:20px;
+    height:30%;
+    background: radial-gradient(rgba(0, 0, 0, 0.476), rgba(0, 0, 0, 0.469)), url('../../assets/imgs/What-is-it-like-working-in-IT.jpg');
+    object-fit: cover;
+    background-repeat: no-repeat;
+    // background-size: contain;
+    background-size: 500px 300px;
+    background-attachment: fixed;
+    img{
+        height:100%
+    }
+    p{
+        font-size:0.6em;
+    }
+}
+.bottom{
+    height:50%;
+    width:100%;
+    padding-top:10px;
+    padding-left:10px;
+    button{
+        color:#a88d30;  
+        height:60px;
+        border-radius:10px;
+        width:60px;
+    }
+    i{
+        color:white;  
+        font-size:2.2em;
+    }
+    .first{
+        font-size:0.7em;
+        padding-left:17px;
+    }
+    .second{
+        font-size:0.7em;
+        padding-left:5px;
+    }
+    
+}
+
+
+
+}
