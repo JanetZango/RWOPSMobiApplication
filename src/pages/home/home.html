@@ -2,6 +2,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <form [formGroup]="userForm"  class="mainContainerForm" (ngSubmit)="formSubmit()"> 
     <div>
+      <!-- <div class="slideShow12">
+      hjnhj
+      </div> -->
       <div class="slideShow">
         <img src="../../assets/imgs/logo2.jpg">
         <p class="HealthTitle">HEALTH</p>
@@ -327,7 +330,7 @@
       <ion-item class="item">
         <ion-label>Do you have remunerative work will be undertaken with/in an established business or organisation
         </ion-label>
-        <ion-select formControlName="choose" multiple="true" cancelText="Cancel" okText="Select"
+        <ion-select formControlName="choose" multiple="false" cancelText="Cancel" okText="Select"
           (ionChange)="Assessment()">
           <ion-option value="1">Yes</ion-option>
           <ion-option value="2">No</ion-option>
@@ -446,9 +449,9 @@
       <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="moveToPage11()">Next</button>
       </div>
-      <div class="movetopage2">
+      <!-- <div class="movetopage2">
         <button ion-button id="movetopage2" (click)="generatepdf()">Generate pdf</button>
-      </div>
+      </div> -->
     </div>
     <div class="slideShow11" id="page2">
       <h3>Section D: Declaration</h3>

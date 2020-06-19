@@ -4,7 +4,7 @@
     <img class="graphic" src="../../assets/icon/4ir (1).png" alt="" srcset="">
     <img style="width: 90%; margin: 15% auto; display: flex;" src="../../assets/imgs/appLogo.jpg">
   </div>
-  <div padding style="position: relative; top: 0%;">
+  <div class="top" padding style="position: relative">
     <h1>Sign-in</h1>
     <form [formGroup]="userForm" >
       <ion-item>
@@ -29,7 +29,7 @@
       </div>
       <br>
       <br>
-      <button ion-button block  (click)="getEmail()"  color="primary">Sign in</button>
+      <button ion-button block  (click)="getEmail()"  [disabled]="!userForm.valid" color="primary">Sign in</button>
       <button (click)="signup()" ion-button clear block color="dark">You haven't Registered? &nbsp; <b>Sign up</b> </button>
     </form>
   </div>

@@ -9,6 +9,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../../model/user.model';
 import { HomePage } from '../home/home';
 import { LoadingController } from 'ionic-angular';
+import { LandingpagePage } from '../landingpage/landingpage';
 
 export interface AuthResponseData {
   email: string
@@ -100,12 +101,13 @@ export class LoginPage {
             password_hash: _responseData[x].password_hash
           }
           this.displayUser.push(obj)
-          this.navCtrl.setRoot(TabsPage, { orgObject: this.displayUser });
+          this.navCtrl.setRoot(LandingpagePage, { orgObject: this.displayUser });
         }
         else {
           console.log('error')
         }
       }
+    
     }, _error => {
       const alert = this.alertCtrl.create({
         title: 'Oops',

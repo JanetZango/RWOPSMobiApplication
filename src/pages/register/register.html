@@ -19,7 +19,7 @@
             (ionBlur)='noInput($event)' ></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('firstname')">
-            <p>Please provide a valid firstname</p>
+            <p>Please provide a firstname</p>
           </div>
           <ion-item>
             <ion-label>
@@ -29,7 +29,7 @@
             (ionBlur)='noInput($event)'></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('surname')">
-            <p>Please provide a valid surname</p>
+            <p>Please provide a surname</p>
           </div>
           <ion-item>
             <ion-label>
@@ -39,14 +39,14 @@
             (ionBlur)='noInput($event)'></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('persal_number')">
-            <p>Please provide a valid Persal number</p>
+            <p>Please provide a valid persal number that has 5 digits</p>
           </div>
         </ion-slide>
         <ion-slide>
           <ion-item class="item">
             <ion-label>Are you SA citizen?
             </ion-label>
-            <ion-select formControlName="choose" multiple="true" cancelText="Cancel" okText="Select"
+            <ion-select formControlName="choose" multiple="false" cancelText="Cancel" okText="Select"
               (ionChange)="Assessment()">
               <ion-option value="1">Yes</ion-option>
               <ion-option value="2">No</ion-option>
@@ -73,16 +73,14 @@
               <ion-input type="number" placeholder="Passport Number" formControlName="passport_number"  (ionFocus)='onInput($event)'
               (ionBlur)='noInput($event)'></ion-input>
             </ion-item>
-            <div class="field-error" *ngIf="_isInvalidControl('passport_number')">
-              <p>Please provide a enter your passport number</p>
-            </div>
+          
           </div>
 
           <ion-item>
             <ion-label>
               <i class="fa fa-phone icon"></i>
             </ion-label>
-            <ion-input type="number" placeholder="Tel Number" formControlName="tel_number"  (ionFocus)='onInput($event)'
+            <ion-input type="tel" placeholder="Tel Number" formControlName="tel_number"  (ionFocus)='onInput($event)'
             (ionBlur)='noInput($event)'></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('tel_number')">
@@ -92,7 +90,7 @@
             <ion-label>
               <i class="fa fa-phone icon"></i>
             </ion-label>
-            <ion-input type="number" placeholder="Cell Number" formControlName="cell_number"  (ionFocus)='onInput($event)'
+            <ion-input type="tel" placeholder="Cell Number" formControlName="cell_number"  (ionFocus)='onInput($event)'
             (ionBlur)='noInput($event)'></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('cell_number')">
@@ -184,7 +182,7 @@
           </div>
           <br>
           <div class="buttonDiv">
-            <button ion-button block type="submit"  color="primary" >Sign Up</button>
+            <button ion-button block type="submit" [disabled]="!userForm.valid"  color="primary" >Sign Up</button>
           </div>
           <div class="buttonDiv2">
             <button ion-button clear block (click)="signIn()" color="dark">Go Back To &nbsp; <b>Sign In</b> </button>  

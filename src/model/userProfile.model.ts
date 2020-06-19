@@ -18,5 +18,5 @@ export class UserProfile {
     public supervisor_email: string
     public job_title_id:number;
     public supervisor_id:number
-    public passport:number
+    public passport_number:number
 }

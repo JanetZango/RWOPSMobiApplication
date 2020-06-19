@@ -11,6 +11,7 @@ import { ToastController } from 'ionic-angular';
 import { RsaIdValidator } from "../../providers/validators/rsaid.validator";
 import { MustMatch } from '../../providers/validators/rsaid.validator';
 import { ThrowStmt } from '@angular/compiler';
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -24,6 +25,7 @@ import { ThrowStmt } from '@angular/compiler';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  // *variables*
   logo: boolean = true
   lowdesign: boolean = true
   private User: User;
@@ -47,8 +49,11 @@ export class RegisterPage {
     public navParams: NavParams,
     public service: ServiceProvider,
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
   ) {
+
+    // *methods*
     this._buildForm();
     this.getDistrict();
     this.getHospital();
@@ -58,7 +63,7 @@ export class RegisterPage {
     this.getProfile();
   }
 
-    /***get the  */
+    /***get the user profile */
     getProfile() {
       this.service.getUserProfile2().subscribe((_responseDataProfile) => {
         this.superviorname = _responseDataProfile[0].firstname
@@ -136,6 +141,7 @@ export class RegisterPage {
       'firstname': ['', [Validators.required, Validators]],
       'supervisor_id': ['', [Validators.required, Validators]],
       'email': ['', [Validators.required, Validators.email]],
+      // 'passport_number': ['', [Validators.required, Validators.email]],
       'unit_id': ['', [Validators.required, Validators]],
       'confirmPassword': ['', [Validators.required, Validators]],
       'password_hash': ['', [Validators.required, Validators]],
@@ -146,6 +152,7 @@ export class RegisterPage {
       'persal_number': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5),]],
       'job_title_id': ['', [Validators.required, Validators]],
       'cell_number': ['', [Validators.required, Validators.minLength(9), Validators.maxLength(15),]],
+      
     }, {
       validator: MustMatch('password_hash', 'confirmPassword')
 
@@ -159,23 +166,20 @@ export class RegisterPage {
   Assessment() {
     if (this.userForm.value.choose == "1") {
       this.showQuestions2 = true;
-    }
-    else if (this.userForm.value.choose = "2") {
-      this.showQuestionsPassword = true
-    }
-    else {
       this.showQuestionsPassword = false
-      this.showQuestions2 = false
     }
-
+    else if (this.userForm.value.choose == "2") {
+      this.showQuestionsPassword = true
+      this.showQuestions2 = false;
+    }
   }
+
   convertPassword() {
     var pass = Md5.hashStr('password_hash')
   }
 
 
   // **submit data 
-
   formSubmit() {
     this.UserProfile = new UserProfile();
     this.UserProfile.firstname = this.userForm.value.firstname;
@@ -193,6 +197,7 @@ export class RegisterPage {
     this.UserProfile.postal_code = this.userForm.value.postal_code;
     this.UserProfile.unit_id = this.userForm.value.unit_id;
     this.UserProfile.supervisor_id = this.userForm.value.supervisor_id;
+    this.UserProfile.passport_number = this.userForm.value.passport_number
 
 
     this.User = new User();
@@ -203,18 +208,17 @@ export class RegisterPage {
     this.User.username = this.userForm.value.email;
     this.User.role = this.User.role
     this.User.user_status = this.User.user_status
-    console.log(this.User.user_status)
     this.service.create(this.User).subscribe((_response: any) => {
       this.UserProfile.user_id = _response.id
       this.UserProfile.supervisor_name = this.superviorname
       this.UserProfile.supervisor_email = this.supervioremail
       this.UserProfile.designation_id = this.UserProfile.designation_id
       this.service.createProfile(this.UserProfile).subscribe((_responseUser: any) => {
-        const toast = this.toastCtrl.create({
-          message: 'User has successfully registered',
-          duration: 3000
+        const alert = this.alertCtrl.create({
+          subTitle: 'User has successfully registered',
+          buttons: ['OK']
         });
-        toast.present();
+        alert.present();
         this.navCtrl.push(LoginPage)
       });
     });
