@@ -21,6 +21,8 @@ import { ServiceProvider } from '../providers/service/service';
 import { ConfigService } from "../providers/service/ConfigService";
 import { GenerateDocumentPage } from '../pages/generate-document/generate-document';
 import { LandingpagePage } from '../pages/landingpage/landingpage';
+import { AuthProvider } from '../providers/auth/auth';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { LandingpagePage } from '../pages/landingpage/landingpage';
   imports: [
     BrowserModule,
      HttpClientModule,
+     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -61,7 +64,10 @@ import { LandingpagePage } from '../pages/landingpage/landingpage';
     ServiceProvider,
     ConfigService,
     File,
+    Storage,
     FileOpener,
+    AuthProvider,
+ 
    
   ]
 })

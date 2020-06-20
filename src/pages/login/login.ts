@@ -10,7 +10,7 @@ import { User } from '../../model/user.model';
 import { HomePage } from '../home/home';
 import { LoadingController } from 'ionic-angular';
 import { LandingpagePage } from '../landingpage/landingpage';
-
+import {AuthProvider} from '../../providers/auth/auth'
 export interface AuthResponseData {
   email: string
   username: string
@@ -42,7 +42,8 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public verifyLogin: ServiceProvider,
     public loadingCtrl: LoadingController,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public auth:AuthProvider
   ) {
     this._buildForm();
   }
@@ -86,6 +87,9 @@ export class LoginPage {
   // login method
   getEmail() {
     this.verifyLogin.getUser().subscribe(_responseData => {
+      this.auth.login(_responseData).then((data=>{
+        console.log(data)
+      })) 
       for (var x = 0; x < _responseData.length; x++) {
         let obj = {
           email: _responseData[x].email,
@@ -102,6 +106,9 @@ export class LoginPage {
           }
           this.displayUser.push(obj)
           this.navCtrl.setRoot(LandingpagePage, { orgObject: this.displayUser });
+          this.auth.login(this.displayUser).then((data) => {
+            console.log(data)
+          })
         }
         else {
           console.log('error')

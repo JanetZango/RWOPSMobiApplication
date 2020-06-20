@@ -13,7 +13,9 @@ import { saveAs } from 'file-saver';
 import { Observable, Subject } from 'rxjs';
 import { ModalController, ViewController } from 'ionic-angular';
 import { GenerateDocumentPage } from '../generate-document/generate-document';
-
+import { AuthProvider } from '../../providers/auth/auth';
+import { LoginPage } from '../login/login';
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -115,7 +117,9 @@ export class HomePage {
     public toastCtrl: ToastController,
     public http: HttpClient,
     public viewCtrl: ViewController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public auth: AuthProvider,
+    public storage: Storage
   ) {
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
     this.date = new Date().toISOString()
@@ -129,7 +133,9 @@ export class HomePage {
     this.getApplicationStatusMethod();
     this._buildForm();
 
-
+    // this.auth.login(this.currentLoggedIn).then((data)=>{
+    //   console.log(data)
+    // })
     this.service.uploadDocument().subscribe(_response => {
       console.log(_response)
     })
@@ -267,22 +273,22 @@ export class HomePage {
     }
   }
   moveToPage6() {
-    
+
     if (this.checkingIfApplicationExists == this.id) {
       console.log("application already exists")
     }
     else {
-    this.Hours = new Hours();
-    this.Hours.current_working_hours = this.userForm.value.current_working_hours;
-    this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
-    this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
+      this.Hours = new Hours();
+      this.Hours.current_working_hours = this.userForm.value.current_working_hours;
+      this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
+      this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
 
-    this.Hours.create_user_id = this.id
-    this.Hours.created_time = this.date
-    this.Hours.application_id =  this.CurrentApplication
-    this.service.createHours(this.Hours).subscribe((_response: any) => {
-      console.log(_response)
-    })
+      this.Hours.create_user_id = this.id
+      this.Hours.created_time = this.date
+      this.Hours.application_id = this.CurrentApplication
+      this.service.createHours(this.Hours).subscribe((_response: any) => {
+        console.log(_response)
+      })
     }
 
     let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
@@ -360,38 +366,38 @@ export class HomePage {
       console.log("application already exists")
     }
     else {
-    this.RemunerativeWork = new RemunerativeWork();
-    this.RemunerativeWork.work_category_id = this.userForm.value.work_category_id;
-    this.RemunerativeWork.nature_of_work = this.userForm.value.nature_of_work;
-    this.RemunerativeWork.start_date = this.userForm.value.start_date;
-    this.RemunerativeWork.end_date = this.userForm.value.end_date;
-    this.RemunerativeWork.mon_start_hours = this.userForm.value.mon_start_hours;
-    this.RemunerativeWork.mon_end_hours = this.userForm.value.mon_end_hours;
-    this.RemunerativeWork.tue_start_hours = this.userForm.value.tue_start_hours;
-    this.RemunerativeWork.tue_end_hours = this.userForm.value.tue_end_hours;
-    this.RemunerativeWork.wed_start_hours = this.userForm.value.wed_start_hours;
-    this.RemunerativeWork.wed_end_hours = this.userForm.value.wed_end_hours;
-    this.RemunerativeWork.thu_start_hours = this.userForm.value.thu_start_hours;
-    this.RemunerativeWork.thu_end_hours = this.userForm.value.thu_end_hours;
-    this.RemunerativeWork.fri_start_hours = this.userForm.value.fri_start_hours;
-    this.RemunerativeWork.fri_end_hours = this.userForm.value.fri_end_hours;
-    this.RemunerativeWork.sat_start_hours = this.userForm.value.sat_start_hours;
-    this.RemunerativeWork.sat_end_hours = this.userForm.value.sat_end_hours;
-    this.RemunerativeWork.sun_start_hours = this.userForm.value.sun_start_hours;
-    this.RemunerativeWork.sun_end_hours = this.userForm.value.sun_end_hours;
-    this.RemunerativeWork.total_working_hours = this.userForm.value.total_working_hours;
-    this.RemunerativeWork.remunerative_work_performed = this.userForm.value.remunerative_work_performed;
-    this.RemunerativeWork.business_name = this.userForm.value.business_name;
-    this.RemunerativeWork.reporting_person_surname = this.userForm.value.reporting_person_surname;
-    this.RemunerativeWork.reporting_person_initials = this.userForm.value.reporting_person_initials;
-    this.RemunerativeWork.contact_number = this.userForm.value.contact_number;
-    this.RemunerativeWork.reporting_person_contact_number = this.userForm.value.reporting_person_contact_number; 
-    this.RemunerativeWork.create_time = this.date
-    this.RemunerativeWork.create_user_id = this.id
-    this.RemunerativeWork.application_id = this.CurrentApplication
-    this.service.createRemunerativeWork(this.RemunerativeWork).subscribe((_response: any) => {
-     console.log(_response)
-    });
+      this.RemunerativeWork = new RemunerativeWork();
+      this.RemunerativeWork.work_category_id = this.userForm.value.work_category_id;
+      this.RemunerativeWork.nature_of_work = this.userForm.value.nature_of_work;
+      this.RemunerativeWork.start_date = this.userForm.value.start_date;
+      this.RemunerativeWork.end_date = this.userForm.value.end_date;
+      this.RemunerativeWork.mon_start_hours = this.userForm.value.mon_start_hours;
+      this.RemunerativeWork.mon_end_hours = this.userForm.value.mon_end_hours;
+      this.RemunerativeWork.tue_start_hours = this.userForm.value.tue_start_hours;
+      this.RemunerativeWork.tue_end_hours = this.userForm.value.tue_end_hours;
+      this.RemunerativeWork.wed_start_hours = this.userForm.value.wed_start_hours;
+      this.RemunerativeWork.wed_end_hours = this.userForm.value.wed_end_hours;
+      this.RemunerativeWork.thu_start_hours = this.userForm.value.thu_start_hours;
+      this.RemunerativeWork.thu_end_hours = this.userForm.value.thu_end_hours;
+      this.RemunerativeWork.fri_start_hours = this.userForm.value.fri_start_hours;
+      this.RemunerativeWork.fri_end_hours = this.userForm.value.fri_end_hours;
+      this.RemunerativeWork.sat_start_hours = this.userForm.value.sat_start_hours;
+      this.RemunerativeWork.sat_end_hours = this.userForm.value.sat_end_hours;
+      this.RemunerativeWork.sun_start_hours = this.userForm.value.sun_start_hours;
+      this.RemunerativeWork.sun_end_hours = this.userForm.value.sun_end_hours;
+      this.RemunerativeWork.total_working_hours = this.userForm.value.total_working_hours;
+      this.RemunerativeWork.remunerative_work_performed = this.userForm.value.remunerative_work_performed;
+      this.RemunerativeWork.business_name = this.userForm.value.business_name;
+      this.RemunerativeWork.reporting_person_surname = this.userForm.value.reporting_person_surname;
+      this.RemunerativeWork.reporting_person_initials = this.userForm.value.reporting_person_initials;
+      this.RemunerativeWork.contact_number = this.userForm.value.contact_number;
+      this.RemunerativeWork.reporting_person_contact_number = this.userForm.value.reporting_person_contact_number;
+      this.RemunerativeWork.create_time = this.date
+      this.RemunerativeWork.create_user_id = this.id
+      this.RemunerativeWork.application_id = this.CurrentApplication
+      this.service.createRemunerativeWork(this.RemunerativeWork).subscribe((_response: any) => {
+        console.log(_response)
+      });
     }
     let slideShow9 = document.getElementsByClassName('slideShow9') as HTMLCollectionOf<HTMLElement>;
     let slideShow10 = document.getElementsByClassName('slideShow10') as HTMLCollectionOf<HTMLElement>;
@@ -429,17 +435,25 @@ export class HomePage {
   }
   moveToPage12() {
     if (this.checkingIfApplicationExists == this.id) {
-      console.log("application already exists")
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'You have already applied',
+        buttons: ['OK']
+      });
+      alert.present();
     }
     else {
-    this.service.Declaration(this.getExistingApplicationId).subscribe((_response) => {
-      console.log(_response)
-    })
-    const toast = this.toastCtrl.create({
-      message: 'You have succesfully applied',
-      duration: 4000
-    });
-    toast.present();
+      this.service.Declaration(this.getExistingApplicationId).subscribe((_response) => {
+        console.log(_response)
+      })
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'You have successfully applied',
+        buttons: ['OK']
+      });
+      alert.present();
+
+
     }
   }
 
@@ -502,6 +516,7 @@ export class HomePage {
     this.service.getDistrictOffice2(this.branch_id).subscribe(_responseDataDistrictOffice => {
       this.districtOfficeDescription = _responseDataDistrictOffice.description
       this.listFilteredLookupMunicipality = _responseDataDistrictOffice;
+      console.log(this.districtOfficeDescription)
     })
   }
 
@@ -599,32 +614,33 @@ export class HomePage {
   // ***upload document
   uploadDocument() {
     let body = new FormData();
-    body.append('img', this.upLoadDocument.name);
+    body.append('img', this.img);
     // this.img = this.upLoadDocument.name
     // console.log(this.img)
-    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.getExistingApplicationId, body)
+    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.checkingIfApplicationExists, body)
       .subscribe(res => {
         console.log(res)
-        const toast = this.toastCtrl.create({
-          message: 'Your upload was succesfull',
-          duration: 4000
+        const alert = this.alertCtrl.create({
+          cssClass: "myAlert",
+          subTitle: 'You have successfully Uploaded',
+          buttons: ['OK']
         });
-        toast.present();
+        alert.present();
       })
   }
 
   insertpic(event: any) {
-    console.log(event)
-    this.upLoadDocument = <File>event.target.files[0]
-    // console.log(this.uploadArr)
-    console.log(this.upLoadDocument.name)
-    this.img = this.upLoadDocument.name
-    console.log(this.img)
-    // let reader = new FileReader();
-    // reader.onload = (event: any) => {
-    //   this.img = event.target.result;
-    // }
-    // reader.readAsDataURL(event.target.files[0]);
+    // console.log(event)
+    // this.upLoadDocument = <File>event.target.files[0]
+    // // console.log(this.uploadArr)
+    // console.log(this.upLoadDocument.name)
+    // this.img = this.upLoadDocument.name
+    // console.log(this.img)
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.img = event.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
   }
 
 
@@ -662,6 +678,10 @@ export class HomePage {
       this.showQuestions2 = false
     }
   }
+
+
+ 
+
 
 
 }

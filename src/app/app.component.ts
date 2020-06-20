@@ -9,18 +9,37 @@ import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { RegisterPage } from '../pages/register/register';
 import { timer } from 'rxjs/observable/timer';
 import { LandingpagePage } from '../pages/landingpage/landingpage';
+import { AuthProvider } from '../providers/auth/auth'
+import { Storage } from "@ionic/storage";
+import { HomePage } from '../pages/home/home';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage: any;
   showSplash = true;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  isLoggedIn: Boolean;
+  user: any;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+    public auth: AuthProvider, public storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+      this.auth.getUser().then((user:any) => {
+        console.log(user)
+        if (user != null) {
+          this.rootPage = LandingpagePage
+        }
+        else{
+          this.rootPage = LoginPage
+        }
+
+
+
+      })
       statusBar.styleDefault();
       splashScreen.hide();
       timer(3000).subscribe(() => this.showSplash = false)

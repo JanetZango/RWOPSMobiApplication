@@ -1,8 +1,16 @@
 <ion-content class="content">
-  <h1>Application Progress Status</h1> 
+  <div *ngIf="this.displayStatus == 1 || this.displayStatus == undefined">
+    <p class="errorTitle">Your Application is still on draft complete the application to see the status of your application</p>
+  </div>
+  <div *ngIf="this.displayStatus == 2 || this.displayStatus == 3 || this.displayStatus == 4 
+   || this.displayStatus ==5  || this.displayStatus ==6  || this.displayStatus ==7 
+   || this.displayStatus ==8 || this.displayStatus ==9" >
+    <h1>Application Progress Status</h1> 
     <div class="box">
         <h4>Hi {{firstname}}&nbsp;{{surname}}</h4>
         <p class="body">Your current status application is</p>
         <p class="body2">{{description}}</p>
     </div>
+  </div>
+
 </ion-content>

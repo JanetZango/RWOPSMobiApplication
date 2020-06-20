@@ -17,6 +17,7 @@ export class ContactPage {
   description
   create_user_id;
   getStatus = new Array();
+  displayStatus;
   constructor(public navCtrl: NavController,
     public navParams: NavParams, public service: ServiceProvider) {
     this.currentLoggedIn.push(this.navParams.get('orgObject'));
@@ -54,7 +55,8 @@ export class ContactPage {
   }
   getApplicationStatusMethod() {
     this.service.getApplicationStatus(this.getStatus).subscribe(_responseDataStatus => {
-  
+      console.log(_responseDataStatus)
+      this.displayStatus =_responseDataStatus.id
         this.description = _responseDataStatus.description
       
     })

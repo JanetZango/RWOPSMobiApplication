@@ -15,7 +15,7 @@
             <ion-label>
               <i class="fa fa-user icon"></i>
             </ion-label>
-            <ion-input type="text" placeholder="Firstname" formControlName="firstname"  (ionFocus)='onInput($event)'
+            <ion-input type="text" placeholder="Firstname" maxlength="25"  formControlName="firstname"  (ionFocus)='onInput($event)'
             (ionBlur)='noInput($event)' ></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('firstname')">
@@ -25,7 +25,7 @@
             <ion-label>
               <i class="fa fa-user icon"></i>
             </ion-label>
-            <ion-input type="text" placeholder="Surname" formControlName="surname"  (ionFocus)='onInput($event)'
+            <ion-input type="text" placeholder="Surname" maxlength="25" formControlName="surname"  (ionFocus)='onInput($event)'
             (ionBlur)='noInput($event)'></ion-input>
           </ion-item>
           <div class="field-error" *ngIf="_isInvalidControl('surname')">
@@ -146,7 +146,7 @@
             <ion-label>Your supervisor name
             </ion-label>
             <ion-select formControlName="supervisor_id">
-              <ion-option [value]="superviorid">{{superviorname}}
+              <ion-option *ngFor="let district of listOdSuperviors" [value]="superviorid">{{district.firstname}}
               </ion-option>
             </ion-select>
           </ion-item>

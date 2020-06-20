@@ -19,6 +19,10 @@ const httpOptions = {
 @Injectable()
 export class ServiceProvider {
   private readonly baseUrl: string;
+  private id: string;
+  private email: string;
+  private username: string;
+  private password_hash: number;
   constructor(public http: HttpClient, public configService: ConfigService) {
     this.baseUrl = this.configService.apiUrl;
   }
@@ -321,11 +325,21 @@ export class ServiceProvider {
       );
   }
 
+  //**get all user profiles */
+
+  getAllUserProfiles() {
+    const url = `${this.baseUrl}/api/userprofile/get`;
+    var dataUser = this.http.get(url, httpOptions)
+    return dataUser
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     return _throw(errorRes);
   }
-
 
 
 

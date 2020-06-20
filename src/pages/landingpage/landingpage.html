@@ -4,10 +4,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="top-top">
    Home
+
+   <button ion-button clear id="buttonLogout" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
   </div>
   <div class="top">
     Gauteng Department of Health
     <p>Internal Services</p>
+    <p id="p">Welcome <b>{{firstname}}&nbsp;{{surname}}</b></p>
   </div>
   <div class="bottom">
     <button ion-button (click)="goToSignIn()"><i class="fa fa-file-text-o" aria-hidden="true"></i></button>
