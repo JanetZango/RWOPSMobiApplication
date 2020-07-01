@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { RegisterPage } from '../pages/register/register';
 import { timer } from 'rxjs/observable/timer';
 import { LandingpagePage } from '../pages/landingpage/landingpage';

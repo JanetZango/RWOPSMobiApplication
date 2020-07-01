@@ -16,10 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { TestpasswordPage } from '../pages/testpassword/testpassword';
 import { ServiceProvider } from '../providers/service/service';
 import { ConfigService } from "../providers/service/ConfigService";
-import { GenerateDocumentPage } from '../pages/generate-document/generate-document';
 import { LandingpagePage } from '../pages/landingpage/landingpage';
 import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
@@ -34,8 +32,6 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     LoginPage,
     RegisterPage,
-    TestpasswordPage,
-    GenerateDocumentPage,
     LandingpagePage
   ],
   imports: [
@@ -53,8 +49,6 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     LoginPage,
     RegisterPage,
-    TestpasswordPage,
-    GenerateDocumentPage,
     LandingpagePage
   ],
   providers: [

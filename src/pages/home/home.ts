@@ -12,10 +12,10 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { saveAs } from 'file-saver';
 import { Observable, Subject } from 'rxjs';
 import { ModalController, ViewController } from 'ionic-angular';
-import { GenerateDocumentPage } from '../generate-document/generate-document';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { Storage } from "@ionic/storage";
+import { LandingpagePage } from '../landingpage/landingpage';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -103,11 +103,15 @@ export class HomePage {
   getExistingApplicationId;
   persalNumber;
   img: string = '../assets/imgs/default.png';
-  upLoadDocument: File = null;
+  message: File = null;
   getStatus: any;
   CurrentApplication;
   getCurrentUser = new Array();
   checkingIfApplicationExists;
+  current_working_hours;
+  current_overtime_hours_worked
+  standby_duties_hours;
+  today;
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     public verifyLogin: ServiceProvider,
@@ -137,19 +141,34 @@ export class HomePage {
     //   console.log(data)
     // })
     this.service.uploadDocument().subscribe(_response => {
-      console.log(_response)
+      // console.log(_response)
     })
   }
+  BackToHome() {
+    // this.navCtrl.rootNav.push(ViewController);
+    this.navCtrl.push(LandingpagePage)
+  }
+  disableData() {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("txtDate")[0].setAttribute('min', today);
+    // console.log(today)
+  }
+  disableData1() {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("txtDate2")[0].setAttribute('min', today);
+  }
+
   ionViewDidLoad() {
     // this.getApplication();
     this.getExistingApplication();
+    this.start_date = new Date().toISOString();
 
   }
 
   //**check if the application exists */
   getExistingApplication() {
     this.service.getApplication().subscribe(_response => {
-      console.log(_response)
+      // console.log(_response)
       for (var x = 0; x < _response.length; x++) {
         // if (this.id == _response[x].create_user_id) {
         let obj = {
@@ -161,7 +180,7 @@ export class HomePage {
         }
 
         this.checkingIfApplicationExists = obj.create_user_id
-        console.log(this.checkingIfApplicationExists)
+        // console.log(this.checkingIfApplicationExists)
       }
 
     })
@@ -223,10 +242,10 @@ export class HomePage {
     }
   }
   moveToPage5() {
-    console.log(this.id)
+    // console.log(this.id)
 
     if (this.checkingIfApplicationExists == this.id) {
-      console.log("application already exists")
+      // console.log("application already exists")
     }
     else {
       this.Application = new Application();
@@ -250,9 +269,9 @@ export class HomePage {
       this.Application.create_user_id = this.id;
       this.Application.id = this.id;
       this.service.createApplication(this.Application).subscribe((_response: any) => {
-        console.log(_response)
+        // console.log(_response)
         this.CurrentApplication = _response.id
-        console.log(_response.id)
+        // console.log(_response.id)
       })
     }
 
@@ -273,76 +292,146 @@ export class HomePage {
     }
   }
   moveToPage6() {
-
-    if (this.checkingIfApplicationExists == this.id) {
-      console.log("application already exists")
+    if (this.current_working_hours == null || this.current_working_hours == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please enter current hours to continue',
+        buttons: ['OK']
+      });
+      alert.present();
     }
+    else if (this.standby_duties_hours == null || this.standby_duties_hours == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please enter the standby duties hours to continue',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else if (this.current_overtime_hours_worked == null || this.current_overtime_hours_worked == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please current overtime hours  to continue',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+
+
     else {
-      this.Hours = new Hours();
-      this.Hours.current_working_hours = this.userForm.value.current_working_hours;
-      this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
-      this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
+      if (this.checkingIfApplicationExists == this.id) {
+        // console.log("application already exists")
+      }
+      else {
+        this.Hours = new Hours();
+        this.Hours.current_working_hours = this.userForm.value.current_working_hours;
+        this.Hours.standby_duties_hours = this.userForm.value.standby_duties_hours;
+        this.Hours.current_overtime_hours_worked = this.userForm.value.current_overtime_hours_worked;
 
-      this.Hours.create_user_id = this.id
-      this.Hours.created_time = this.date
-      this.Hours.application_id = this.CurrentApplication
-      this.service.createHours(this.Hours).subscribe((_response: any) => {
-        console.log(_response)
-      })
-    }
+        this.Hours.create_user_id = this.id
+        this.Hours.created_time = this.date
+        this.Hours.application_id = this.CurrentApplication
+        this.service.createHours(this.Hours).subscribe((_response: any) => {
+          // console.log(_response)
+        })
+      }
 
-    let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
-    let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
 
-    if (slideShow5[0].style.display == "none") {
-      slideShow5[0].style.display = "block"
-      slideShow6[0].style.display = "none"
+      let slideShow5 = document.getElementsByClassName('slideShow5') as HTMLCollectionOf<HTMLElement>;
+      let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
 
-    } else if (slideShow5[0].style.display == "block") {
-      slideShow5[0].style.display = "none"
-      slideShow6[0].style.display = "block"
-    }
-    else {
-      slideShow6[0].style.display = "none"
-      slideShow5[0].style.display = "block"
+      if (slideShow5[0].style.display == "none") {
+        slideShow5[0].style.display = "block"
+        slideShow6[0].style.display = "none"
+
+      } else if (slideShow5[0].style.display == "block") {
+        slideShow5[0].style.display = "none"
+        slideShow6[0].style.display = "block"
+      }
+      else {
+        slideShow6[0].style.display = "none"
+        slideShow5[0].style.display = "block"
+      }
     }
   }
 
 
 
   moveToPage7() {
-    let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
-    let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
-
-    if (slideShow6[0].style.display == "none") {
-      slideShow6[0].style.display = "block"
-      slideShow7[0].style.display = "none"
-
-    } else if (slideShow6[0].style.display == "block") {
-      slideShow6[0].style.display = "none"
-      slideShow7[0].style.display = "block"
+    if (this.work_category_id == null || this.work_category_id == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please select your category to continue',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else if (this.start_date == null || this.start_date == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please select your start date to continue',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else if (this.end_date == null || this.end_date == undefined) {
+      const alert = this.alertCtrl.create({
+        cssClass: "myAlert",
+        subTitle: 'Please select your end date to continue',
+        buttons: ['OK']
+      });
+      alert.present();
     }
     else {
-      slideShow7[0].style.display = "none"
-      slideShow6[0].style.display = "block"
+      let slideShow6 = document.getElementsByClassName('slideShow6') as HTMLCollectionOf<HTMLElement>;
+      let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
+
+      if (slideShow6[0].style.display == "none") {
+        slideShow6[0].style.display = "block"
+        slideShow7[0].style.display = "none"
+
+      } else if (slideShow6[0].style.display == "block") {
+        slideShow6[0].style.display = "none"
+        slideShow7[0].style.display = "block"
+      }
+      else {
+        slideShow7[0].style.display = "none"
+        slideShow6[0].style.display = "block"
+      }
     }
+
   }
   moveToPage8() {
-    let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
-    let slideShow8 = document.getElementsByClassName('slideShow8') as HTMLCollectionOf<HTMLElement>;
+    // if (this.mon_start_hours == null && this.mon_end_hours == null || this.tue_start_hours == null && this.tue_end_hours == null
+    //   || this.wed_start_hours == null && this.wed_end_hours == null || this.thu_start_hours == null && this.thu_end_hours == null
+    //   || this.fri_start_hours == null && this.fri_end_hours == null || this.sat_start_hours == null && this.sat_end_hours == null
+    //   || this.sun_start_hours == null && this.sun_end_hours == null) {
 
-    if (slideShow7[0].style.display == "none") {
-      slideShow7[0].style.display = "block"
-      slideShow8[0].style.display = "none"
+    //   const alert = this.alertCtrl.create({
+    //     cssClass: "myAlert",
+    //     subTitle: 'Please select atleast one day',
+    //     buttons: ['OK']
+    //   });
+    //   alert.present();
+    // }
+    // else {
+      let slideShow7 = document.getElementsByClassName('slideShow7') as HTMLCollectionOf<HTMLElement>;
+      let slideShow8 = document.getElementsByClassName('slideShow8') as HTMLCollectionOf<HTMLElement>;
 
-    } else if (slideShow7[0].style.display == "block") {
-      slideShow7[0].style.display = "none"
-      slideShow8[0].style.display = "block"
-    }
-    else {
-      slideShow8[0].style.display = "none"
-      slideShow7[0].style.display = "block"
-    }
+      if (slideShow7[0].style.display == "none") {
+        slideShow7[0].style.display = "block"
+        slideShow8[0].style.display = "none"
+
+      } else if (slideShow7[0].style.display == "block") {
+        slideShow7[0].style.display = "none"
+        slideShow8[0].style.display = "block"
+      }
+      else {
+        slideShow8[0].style.display = "none"
+        slideShow7[0].style.display = "block"
+      }
+    // }
+
   }
   moveToPage9() {
     let slideShow8 = document.getElementsByClassName('slideShow8') as HTMLCollectionOf<HTMLElement>;
@@ -363,7 +452,7 @@ export class HomePage {
   }
   moveToPage10() {
     if (this.checkingIfApplicationExists == this.id) {
-      console.log("application already exists")
+      // console.log("application already exists")
     }
     else {
       this.RemunerativeWork = new RemunerativeWork();
@@ -396,7 +485,7 @@ export class HomePage {
       this.RemunerativeWork.create_user_id = this.id
       this.RemunerativeWork.application_id = this.CurrentApplication
       this.service.createRemunerativeWork(this.RemunerativeWork).subscribe((_response: any) => {
-        console.log(_response)
+        // console.log(_response)
       });
     }
     let slideShow9 = document.getElementsByClassName('slideShow9') as HTMLCollectionOf<HTMLElement>;
@@ -444,7 +533,7 @@ export class HomePage {
     }
     else {
       this.service.Declaration(this.getExistingApplicationId).subscribe((_response) => {
-        console.log(_response)
+        // console.log(_response)
       })
       const alert = this.alertCtrl.create({
         cssClass: "myAlert",
@@ -498,10 +587,10 @@ export class HomePage {
       this.designation_id = _responseData.designation_id
       this.unit_id = _responseData.unit_id
       this.postal_code = _responseData.postal_code
-      console.log(this.unit_id)
-
+      // console.log(this.unit_id)
+      // 
       this.getCurrentUser.push(_responseData)
-      console.log(this.getCurrentUser)
+      // console.log(this.getCurrentUser)
 
       this.getDistrictOffice();
       this.getLaundries();
@@ -516,7 +605,7 @@ export class HomePage {
     this.service.getDistrictOffice2(this.branch_id).subscribe(_responseDataDistrictOffice => {
       this.districtOfficeDescription = _responseDataDistrictOffice.description
       this.listFilteredLookupMunicipality = _responseDataDistrictOffice;
-      console.log(this.districtOfficeDescription)
+      // console.log(this.districtOfficeDescription)
     })
   }
 
@@ -541,7 +630,7 @@ export class HomePage {
   getWorkCategory() {
     this.service.getWorkCategory().subscribe(_responseDataCategory => {
       this.listFilteredLookupWorkCategory = _responseDataCategory
-      console.log(this.listFilteredLookupWorkCategory)
+      // console.log(this.listFilteredLookupWorkCategory)
     })
   }
   getApplicationStatusMethod() {
@@ -609,26 +698,6 @@ export class HomePage {
     });
   }
 
-
-
-  // ***upload document
-  uploadDocument() {
-    let body = new FormData();
-    body.append('img', this.img);
-    // this.img = this.upLoadDocument.name
-    // console.log(this.img)
-    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.checkingIfApplicationExists, body)
-      .subscribe(res => {
-        console.log(res)
-        const alert = this.alertCtrl.create({
-          cssClass: "myAlert",
-          subTitle: 'You have successfully Uploaded',
-          buttons: ['OK']
-        });
-        alert.present();
-      })
-  }
-
   insertpic(event: any) {
     // console.log(event)
     // this.upLoadDocument = <File>event.target.files[0]
@@ -644,10 +713,30 @@ export class HomePage {
   }
 
 
+  // ***upload document
+  uploadDocument() {
+    let body = new FormData();
+    // body.append('img', this.img,this.mesage.name);
+    // this.img = this.upLoadDocument.name
+    // console.log(this.img)
+    this.http.post('http://156.38.140.58:5040/api/ApplicationDocument/UploadFile?application_id=' + this.checkingIfApplicationExists, body)
+      .subscribe(res => {
+        // console.log(res)
+        const alert = this.alertCtrl.create({
+          cssClass: "myAlert",
+          subTitle: 'You have successfully Uploaded',
+          buttons: ['OK']
+        });
+        alert.present();
+      })
+  }
+
+
+
   // **model page
   generatepdf() {
-    const modal = this.modalCtrl.create(GenerateDocumentPage, { orgObject: this.getCurrentUser });
-    modal.present();
+    // const modal = this.modalCtrl.create(GenerateDocumentPage, { orgObject: this.getCurrentUser });
+    // modal.present();
   }
 
 
@@ -680,7 +769,7 @@ export class HomePage {
   }
 
 
- 
+
 
 
 

@@ -32,6 +32,7 @@ export class LoginPage {
   lowdesign: boolean = true
   email
   password_hash;
+  LoggInUser;
 
 
   // arrays
@@ -88,7 +89,7 @@ export class LoginPage {
   getEmail() {
     this.verifyLogin.getUser().subscribe(_responseData => {
       this.auth.login(_responseData).then((data=>{
-        console.log(data)
+        // console.log(data)
       })) 
       for (var x = 0; x < _responseData.length; x++) {
         let obj = {
@@ -97,21 +98,26 @@ export class LoginPage {
           username: _responseData[x].username,
           id: _responseData[x].id
         }
-        if (obj.email === this.userForm.value.email && obj.password_hash === this.userForm.value.password) {
+        // console.log(obj)
+        this.LoggInUser = obj
+        // console.log(this.LoggInUser.email)      
+        if (this.LoggInUser.email === this.userForm.value.email && this.LoggInUser.password_hash === this.userForm.value.password) {       
           let obj = {
             id: _responseData[x].id,
             email: _responseData[x].email,
             username: _responseData[x].username,
             password_hash: _responseData[x].password_hash
           }
+          // console.log(obj)
           this.displayUser.push(obj)
+          // console.log(this.displayUser)    
           this.navCtrl.setRoot(LandingpagePage, { orgObject: this.displayUser });
           this.auth.login(this.displayUser).then((data) => {
-            console.log(data)
+            // console.log(data)
           })
         }
         else {
-          console.log('error')
+          // console.log('error')
         }
       }
     

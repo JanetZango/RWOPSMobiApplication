@@ -59,7 +59,7 @@ export class AboutPage {
             surname : _response[x].surname,
             status: _response[x].status_id
             }    
-            console.log(obj)   
+            // console.log(obj)   
             this.getStatus = obj.status 
           }
         }
@@ -68,11 +68,11 @@ export class AboutPage {
       })
     }
     getApplicationStatusMethod() {
-      console.log(this.getStatus)
+      // console.log(this.getStatus)
       this.service.getApplicationStatus(this.getStatus).subscribe(_responseDataStatus => {
       this.description =_responseDataStatus.description
       this.displayStatus =_responseDataStatus.id
-      console.log(this.displayStatus)
+      // console.log(this.displayStatus)
       })
     }
     getDepartment() {

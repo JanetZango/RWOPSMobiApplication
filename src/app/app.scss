@@ -14,7 +14,6 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 .myAlert {
   
   color: #eaf0f1;
@@ -43,11 +42,11 @@
 }
 .tabs-md .tab-button{
   color:white;
-  background-color:white;
+  background-color:#a88d30;
 }
 .tabs-md .tab-button[aria-selected=true]{
   color:white;
-  background-color:white;
+  background-color:#d6be67;
 }
 ion-icon::before{
   color:white;

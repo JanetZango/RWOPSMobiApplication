@@ -55,7 +55,7 @@ export class ContactPage {
   }
   getApplicationStatusMethod() {
     this.service.getApplicationStatus(this.getStatus).subscribe(_responseDataStatus => {
-      console.log(_responseDataStatus)
+      // console.log(_responseDataStatus)
       this.displayStatus =_responseDataStatus.id
         this.description = _responseDataStatus.description
       

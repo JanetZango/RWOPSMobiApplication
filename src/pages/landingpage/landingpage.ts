@@ -5,6 +5,7 @@ import { TabsPage } from '../tabs/tabs';
 import { ServiceProvider } from '../../providers/service/service';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Storage } from "@ionic/storage";
+import { HomePage } from '../home/home';
 /**
  * Generated class for the LandingpagePage page.
  *
@@ -30,19 +31,19 @@ export class LandingpagePage {
     public verifyLogin: ServiceProvider, public auth: AuthProvider,
      public storage: Storage,public alertCtrl:AlertController) {
     this.currentLoggedIn = this.navParams.get('orgObject')
-    console.log(this.currentLoggedIn)
+    // console.log(this.currentLoggedIn)
     // console.log(this.currentLoggedIn[0].id)
     // this.id = this.currentLoggedIn[0].id
 
     this.getUserProfile();
     // this.storeCurrentUser();
 
-    console.log(this.id)
+    // console.log(this.id)
   }
 
   storeCurrentUser() {
     this.auth.login(this.currentLoggedIn).then((data) => {
-      console.log(data)
+      // console.log(data)
     })
   }
 
@@ -51,18 +52,18 @@ export class LandingpagePage {
 
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LandingpagePage');
+    // console.log('ionViewDidLoad LandingpagePage');
   }
   getUserProfile() {
     this.storage.get('user').then((user:any) => {
       this.user = user;
       this.userArr = user
       
-      console.log(this.user[0].id)
+      // console.log(this.user[0].id)
       this.id = this.user[0].id
       this.isLoggedIn = true;
       this.verifyLogin.getUserProfile(this.id).subscribe((_responseData) => {
-        console.log(_responseData)
+        // console.log(_responseData)
         this.firstname = _responseData.firstname
         this.surname = _responseData.surname
       });
@@ -71,7 +72,7 @@ export class LandingpagePage {
   }
 
   goToSignIn() {
-    console.log(this.userArr)
+    // console.log(this.userArr)
     this.navCtrl.push(TabsPage, { orgObject: this.userArr });
   }
 
@@ -87,14 +88,14 @@ export class LandingpagePage {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            // console.log('Cancel clicked');
           }
         },
         {
           text: 'Logout',
           handler: () => {
             this.auth.logout().then((data) => {
-             console.log(data)
+            //  console.log(data)
              this.navCtrl.push(LoginPage)
             })
           }

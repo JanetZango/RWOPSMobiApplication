@@ -1,6 +1,9 @@
 <ion-content class="content">
-  <div *ngIf="this.displayStatus == 1 || this.displayStatus == 2 || this.displayStatus == 3  || this.displayStatus ==4 || this.displayStatus == undefined" >
+  <div *ngIf="this.displayStatus == 1 || this.displayStatus == 2 || this.displayStatus == 3  || this.displayStatus == 4 || this.displayStatus == undefined || this.displayStatus == null " >
     <p class="errorTitle">The certificate is only generated after the application has been approved</p>
+  </div>
+  <div *ngIf="this.displayStatus == 8">
+   <p class="errorTitle">Your application has not been approved</p>
   </div>
   <div *ngIf="this.displayStatus == 5">
   <div class="logo">
@@ -26,7 +29,7 @@
       disciplinary steps will be instituted.</p>
     <p class="normalPara">If you wish to continue with other remunerative work after the expiry of the approved date, a
       further application must be submitted.</p>
-    <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png">
+    <!-- <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png"> -->
     <p class="sign">Executive Authority/Delegated Authority</p>
     <p class="datePara">10/20/2020</p>
     <p class="mpveDate">(date)</p>

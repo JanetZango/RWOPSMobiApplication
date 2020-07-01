@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
-    "@types/node": "^14.0.10",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.3",

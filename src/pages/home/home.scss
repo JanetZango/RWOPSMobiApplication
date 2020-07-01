@@ -1,10 +1,10 @@
 page-home {
   .content{
     border:1.5px solid #a88d30;
-//     background-size:cover;
-//     background-image:
-// linear-gradient(to bottom, rgba(245, 246, 252, 0.891), rgba(250, 243, 243, 0.952)),
-// url('../../assets/icon/pngguru 1.png');
+
+}
+i{
+  font-size:1.3em;
 }
     .theSlider {
       max-width: 100%;
@@ -360,6 +360,10 @@ text-align: center;
       margin-top:5px;
       text-align: center;
       
+  }
+  input{
+    width:290px;
+    height: 45px;
   }
 }
 .item2{ 

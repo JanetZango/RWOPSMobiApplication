@@ -10,7 +10,6 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { ToastController } from 'ionic-angular';
 import { RsaIdValidator } from "../../providers/validators/rsaid.validator";
 import { MustMatch } from '../../providers/validators/rsaid.validator';
-import { ThrowStmt } from '@angular/compiler';
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the RegisterPage page.
@@ -79,9 +78,9 @@ export class RegisterPage {
   /***get the user profile */
   getProfile() {
     this.service.getUserProfile2().subscribe((_responseDataProfile) => {
-      console.log(_responseDataProfile)
+      // console.log(_responseDataProfile)
       this.listOdSuperviors = _responseDataProfile
-      console.log(this.listOdSuperviors)
+      // console.log(this.listOdSuperviors)
       this.superviorname = _responseDataProfile.firstname
       this.superviorsurname = _responseDataProfile.surname
       this.superviorid = _responseDataProfile.id
@@ -94,13 +93,13 @@ export class RegisterPage {
   // *get current user profile
   getUserProfile() {
     this.service.getAllUserProfiles().subscribe((_responseData) => {
-      console.log(_responseData)
+      // console.log(_responseData)
       for (var x = 0; x < _responseData.length; x++) {
         let obj = {
           persal_number: _responseData[x].persal_number
         }
         this.getExistingProfile = obj.persal_number
-        console.log(this.getExistingProfile)
+        // console.log(this.getExistingProfile)
       }
     })
   }
@@ -109,7 +108,7 @@ export class RegisterPage {
   /*district*/  //branch
   getDistrict() {
     this.service.getDistrictOffice().subscribe(_responseDataDistrict => {
-      console.log(_responseDataDistrict)
+      // console.log(_responseDataDistrict)
       this.listFilteredLookupDistrict = _responseDataDistrict
     })
   }
@@ -136,7 +135,7 @@ export class RegisterPage {
   getLaundries() {
     this.service.getLaundries().subscribe(_responseDataLaundries => {
       this.listFilteredLookupLaundries = _responseDataLaundries
-      console.log(this.listFilteredLookupLaundries)
+      // console.log(this.listFilteredLookupLaundries)
     })
   }
 
@@ -178,7 +177,7 @@ export class RegisterPage {
       'tel_number': ['', [Validators.required, Validators.minLength(9), Validators.maxLength(15),]],
       'id_number': ['', [Validators.required, RsaIdValidator.isValid,]],
       'branch_id': ['', [Validators.required, Validators]],
-      'persal_number': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5),]],
+      'persal_number': ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8),]],
       'job_title_id': ['', [Validators.required, Validators]],
       'cell_number': ['', [Validators.required, Validators.minLength(9), Validators.maxLength(15),]],
 
@@ -210,6 +209,7 @@ export class RegisterPage {
 
   // **submit data 
   formSubmit() {
+    // console.log(this.getExistingProfile)
     // this.service.getAllUserProfiles().subscribe((_responseData) => {
     //   for (var x = 0; x < _responseData.length; x++) {
     //     let obj = {

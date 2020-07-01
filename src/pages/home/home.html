@@ -1,4 +1,5 @@
 <ion-content class="content">
+  <button ion-button clear id="buttonLogout" (click)="BackToHome()"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <form [formGroup]="userForm"  class="mainContainerForm" (ngSubmit)="formSubmit()"> 
     <div>
@@ -85,22 +86,22 @@
           <ion-input type="text" disabled [value]="email" formControlName="email" placeholder="Email address">
           </ion-input>
         </ion-item>
-        <p>Postal Address</p>
+        <!-- <p>Postal Address</p>
         <ion-item class="item">
           <ion-label>
             <i class="fa fa-address-book icon"></i>
           </ion-label>
           <ion-input type="text" disabled [value]="postal_address" formControlName="postal_address"
             placeholder="Postal Address"></ion-input>
-        </ion-item>
-        <p>Postal Code</p>
+        </ion-item> -->
+        <!-- <p>Postal Code</p>
         <ion-item class="item">
           <ion-label>
             <i class="fa fa-address-book icon"></i>
           </ion-label>
           <ion-input type="number" disabled [value]="postal_code" formControlName="postal_code"
             placeholder="Postal Code"></ion-input>
-        </ion-item>
+        </ion-item> -->
         <p>Hospital</p>
         <ion-item class="item">
           <ion-label>
@@ -160,7 +161,7 @@
         <ion-label>
           <i class="fa fa-hourglass-3 icon"></i>
         </ion-label>
-        <ion-input type="number" [value]="current_working_hours" formControlName="current_working_hours"
+        <ion-input type="number" [value]="current_working_hours" formControlName="current_working_hours"  [(ngModel)]="current_working_hours"
           placeholder="Current working hours"></ion-input>
       </ion-item>
       <div class="field-error" *ngIf="_isInvalidControl('current_working_hours')">
@@ -171,7 +172,7 @@
         <ion-label>
           <i class="fa fa-hourglass-3 icon"></i>
         </ion-label>
-        <ion-input type="number" [value]="standby_duties_hours" formControlName="standby_duties_hours"
+        <ion-input type="number" [value]="standby_duties_hours" formControlName="standby_duties_hours" [(ngModel)]="standby_duties_hours"
           placeholder="Call/standby duties hours"></ion-input>
       </ion-item>
       <div class="field-error" *ngIf="_isInvalidControl('standby_duties_hours')">
@@ -182,7 +183,7 @@
         <ion-label>
           <i class="fa fa-hourglass-end icon"></i>
         </ion-label>
-        <ion-input type="number" [value]="current_overtime_hours_worked" formControlName="current_overtime_hours_worked"
+        <ion-input type="number" [value]="current_overtime_hours_worked" formControlName="current_overtime_hours_worked" [(ngModel)]="current_overtime_hours_worked"
           placeholder="Current overtime hours worked">
         </ion-input>
       </ion-item>
@@ -198,7 +199,7 @@
       <h3>Section C: Application for Other Remunerative Work</h3>
       <ion-item>
         <ion-label>Select Category of Work</ion-label>
-        <ion-select formControlName="work_category_id">
+        <ion-select formControlName="work_category_id" [(ngModel)]="work_category_id">
           <ion-option *ngFor="let district of listFilteredLookupWorkCategory" [value]="district.id">{{district.description}}
           </ion-option>
         </ion-select>
@@ -215,28 +216,28 @@
       </div>
       <p>Planned start date of other remunerative work</p>
       <ion-item class="item">
-        <ion-label>
+        <!-- <ion-label>
           <i class="fa fa-calendar-o icon"></i>
-        </ion-label>
-        <ion-input type="date" formControlName="start_date" placeholder="Start date">
-        </ion-input>
+        </ion-label> -->
+        <input type="date" (click)="disableData()" name="txtDate" formControlName="start_date" placeholder="Start date"  [(ngModel)]="start_date"/>
+        <!-- </input> -->
       </ion-item>
       <!-- <div class="field-error" *ngIf="_isInvalidControl('start_date')">
         <p>Please provide a start date</p>
       </div> -->
       <p>Planned end date of other remunerative work</p>
       <ion-item class="item">
-        <ion-label>
+        <!-- <ion-label>
           <i class="fa fa-calendar-o icon"></i>
-        </ion-label>
-        <ion-input type="date" formControlName="end_date" placeholder="End date">
-        </ion-input>
+        </ion-label> --> 
+        <input type="date" (click)="disableData1()" name="txtDate2"  formControlName="end_date" placeholder="End date" [(ngModel)]="end_date"/>
+        <!-- </input> -->
       </ion-item>
       <!-- <div class="field-error" *ngIf="_isInvalidControl('end_date')">
         <p>Please provide end date</p>
       </div> -->
       <div class="movetopage2">
-        <button ion-button id="movetopage2" (click)="moveToPage7()">Next</button>
+        <button ion-button id="movetopage2"  (click)="moveToPage7()">Next</button>
       </div>
     </div>
     <div class="slideShow7">
@@ -244,9 +245,9 @@
       <p class="title_name">Specify the days of the week and specific hours that work will be performed</p>
       <div class="your-class">
         <p>Monday</p>
-        <input formControlName="mon_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
+        <input [(ngModel)]="mon_start_hours" formControlName="mon_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
           type="time" /> to
-        <input formControlName="mon_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
+        <input [(ngModel)]="mon_end_hours" formControlName="mon_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
       </div>
     
     <!-- <div class="field-error" *ngIf="_isInvalidControl('mon_start_hours')">
@@ -257,17 +258,17 @@
     </div> -->
     <div class="your-class">
       <p>Tuesday</p>
-      <input formControlName="tue_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
+      <input [(ngModel)]="tue_start_hours" formControlName="tue_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name"
         type="time" /> to
-      <input formControlName="tue_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
+      <input [(ngModel)]="tue_end_hours" formControlName="tue_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id=" Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('tue_start_hours')">
       <p>Please provide tuesday hours</p>
     </div> -->
     <div class="your-class">
       <p>Wednesday</p>
-      <input formControlName="wed_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="wed_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input [(ngModel)]="wed_start_hours" formControlName="wed_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input [(ngModel)]="wed_end_hours" formControlName="wed_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('wed_end_hours')">
       <p>Please provide hours</p>
@@ -277,8 +278,8 @@
     </div> -->
     <div class="your-class">
       <p>Thursday</p>
-      <input formControlName="thu_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="thu_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input [(ngModel)]="thu_start_hours" formControlName="thu_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input [(ngModel)]="thu_end_hours" formControlName="thu_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('thu_end_hours')">
       <p>Please provide hours</p>
@@ -288,8 +289,8 @@
     </div> -->
     <div class="your-class">
       <p>Friday</p>
-      <input formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input [(ngModel)]="fri_start_hours" formControlName="fri_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input [(ngModel)]="fri_end_hours" formControlName="fri_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
@@ -299,8 +300,8 @@
     </div> -->
     <div class="your-class">
       <p>Saturday</p>
-      <input formControlName="sat_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="sat_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input [(ngModel)]="sat_start_hours" formControlName="sat_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input [(ngModel)]="sat_end_hours" formControlName="sat_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
@@ -310,8 +311,8 @@
     </div> -->
     <div class="your-class">
       <p>Sunday</p>
-      <input formControlName="sun_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
-      <input formControlName="sun_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
+      <input [(ngModel)]="sun_start_hours" formControlName="sun_start_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="First_Name" type="time" /> to
+      <input [(ngModel)]="sun_end_hours" formControlName="sun_end_hours" displayFormat="h:mm A" pickerFormat="h mm A" id="Last_Name" type="time" />
     </div>
     <!-- <div class="field-error" *ngIf="_isInvalidControl('fri_end_hours')">
       <p>Please provide hours</p>
@@ -492,7 +493,7 @@
         authorisation
         to perform other remunerative work, based on a change in operational requirements and/or poor performance on
         my part.</p>
-      <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png">
+      <!-- <img src="../../assets/imgs/index-of-wp-content-uploads-signatures-signature-png-1440_500.png"> -->
       <p class="sign">Signature of Applicant</p>
       <p class="datePara">10/20/2020</p>
       <p class="mpveDate">(date)</p>
